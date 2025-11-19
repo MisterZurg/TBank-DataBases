@@ -1,0 +1,182 @@
+{
+  "test_id": "011",
+  "description": "Вывести имена клиентов как client_name",
+  "alias": "alias_first_name",
+  "hardCleanUpAfterTest": false,
+  "order_matters": false,
+  "data_templates": [
+    "INSERT INTO clients(id, first_name, last_name) VALUES (1, {{cf1}}, {{cl1}}), (2, {{cf2}}, {{cl2}});"
+  ],
+  "cases": [
+    {
+      "case_id": "011_1",
+      "params": {
+        "cf1": "gcmecfkQ",
+        "cl1": "eqtxset",
+        "cf2": "XKBPtJuG",
+        "cl2": "XyRzA"
+      },
+      "expected": [
+        [
+          "gcmecfkQ"
+        ],
+        [
+          "XKBPtJuG"
+        ]
+      ]
+    },
+    {
+      "case_id": "011_2",
+      "params": {
+        "cf1": "zHUsWoH",
+        "cl1": "GQBAJd",
+        "cf2": "xqKo",
+        "cl2": "FuCDwcY"
+      },
+      "expected": [
+        [
+          "zHUsWoH"
+        ],
+        [
+          "xqKo"
+        ]
+      ]
+    },
+    {
+      "case_id": "011_3",
+      "params": {
+        "cf1": "hepILZOS",
+        "cl1": "HiFa",
+        "cf2": "jhqWbU",
+        "cl2": "VBhmY"
+      },
+      "expected": [
+        [
+          "hepILZOS"
+        ],
+        [
+          "jhqWbU"
+        ]
+      ]
+    },
+    {
+      "case_id": "011_4",
+      "params": {
+        "cf1": "kbgF",
+        "cl1": "tTQUtt",
+        "cf2": "hsciJDw",
+        "cl2": "HLtoq"
+      },
+      "expected": [
+        [
+          "kbgF"
+        ],
+        [
+          "hsciJDw"
+        ]
+      ]
+    },
+    {
+      "case_id": "011_5",
+      "params": {
+        "cf1": "PsqEtxi",
+        "cl1": "JlHy",
+        "cf2": "PrgIhM",
+        "cl2": "dBcLxgQ"
+      },
+      "expected": [
+        [
+          "PsqEtxi"
+        ],
+        [
+          "PrgIhM"
+        ]
+      ]
+    },
+    {
+      "case_id": "011_6",
+      "params": {
+        "cf1": "gRnnFuU",
+        "cl1": "YcjAbT",
+        "cf2": "whWLskiL",
+        "cl2": "AWnozRl"
+      },
+      "expected": [
+        [
+          "gRnnFuU"
+        ],
+        [
+          "whWLskiL"
+        ]
+      ]
+    },
+    {
+      "case_id": "011_7",
+      "params": {
+        "cf1": "QYrYmY",
+        "cl1": "pGfI",
+        "cf2": "uVaFd",
+        "cl2": "fgDc"
+      },
+      "expected": [
+        [
+          "QYrYmY"
+        ],
+        [
+          "uVaFd"
+        ]
+      ]
+    },
+    {
+      "case_id": "011_8",
+      "params": {
+        "cf1": "wjqx",
+        "cl1": "KtuBs",
+        "cf2": "ubgMqaaS",
+        "cl2": "aXzEVyHl"
+      },
+      "expected": [
+        [
+          "wjqx"
+        ],
+        [
+          "ubgMqaaS"
+        ]
+      ]
+    },
+    {
+      "case_id": "011_9",
+      "params": {
+        "cf1": "ntXsc",
+        "cl1": "edEBS",
+        "cf2": "zmCdp",
+        "cl2": "rCxXl"
+      },
+      "expected": [
+        [
+          "ntXsc"
+        ],
+        [
+          "zmCdp"
+        ]
+      ]
+    },
+    {
+      "case_id": "011_10",
+      "params": {
+        "cf1": "bqyrRdR",
+        "cl1": "sQLw",
+        "cf2": "reuY",
+        "cl2": "YaIfD"
+      },
+      "expected": [
+        [
+          "bqyrRdR"
+        ],
+        [
+          "reuY"
+        ]
+      ]
+    }
+  ]
+}

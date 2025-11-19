@@ -1,0 +1,2779 @@
+{
+  "meta": {
+    "title": "SQL тесты на CRUD операции для Золотого хранилища Т-Банка",
+    "author": "d.lukovnikov",
+    "global_variations": 2,
+    "version": "1.0",
+    "generator_version": "0.8"
+  },
+  "setup": "CREATE TABLE IF NOT EXISTS clients (\n    id SERIAL PRIMARY KEY,\n    full_name VARCHAR(100),\n    passport_number VARCHAR(20),\n    created_at DATE\n);\n\nCREATE TABLE IF NOT EXISTS vaults (\n    id SERIAL PRIMARY KEY,\n    vault_name VARCHAR(50),\n    capacity_g DECIMAL,\n    location VARCHAR(50)\n);\n\nCREATE TABLE IF NOT EXISTS gold_deposits (\n    id SERIAL PRIMARY KEY,\n    client_id INT ,\n    vault_id INT,\n    weight_g DECIMAL,\n    deposit_date DATE\n);",
+  "cleanup": "TRUNCATE gold_deposits, vaults, clients RESTART IDENTITY;",
+  "hardCleanUp": "DROP TABLE IF EXISTS gold_deposits, vaults, clients;",
+  "tables": [
+    "clients",
+    "vaults",
+    "gold_deposits"
+  ],
+  "tests": [
+    {
+      "test_id": "001",
+      "alias": "select_client_name_passport",
+      "description": "Выбрать имя и номер паспорта всех клиентов",
+      "md_description": "### Контекст\nНеобходимо получить полное имя и номер паспорта клиентов для проверки внесенных вкладов.\n\n### Поля\n`full_name`, `passport_number`\n\n### Требование\nСформировать SQL-запрос, который извлекает эти данные из таблицы `clients`.",
+      "type": "select",
+      "difficulty": 1,
+      "order_matters": false,
+      "needHardCleanUpAfterTest": false,
+      "per_test_setup": "",
+      "template_solution": "SELECT full_name, passport_number FROM clients;",
+      "template_solution_check": {
+        "check_type": "compare_select",
+        "expected_columns": [
+          "full_name",
+          "passport_number"
+        ],
+        "order_matters": false
+      },
+      "data_templates": [
+        "INSERT INTO clients (id, full_name, passport_number) VALUES ({{client_id}}, {{full_name}}, {{passport_number}});"
+      ],
+      "placeholders": {
+        "client_id": {
+          "type": "int"
+        },
+        "full_name": {
+          "type": "string",
+          "format": "name"
+        },
+        "passport_number": {
+          "type": "string",
+          "format": "passport"
+        }
+      },
+      "variations": 12,
+      "cases": [
+        {
+          "case_id": "select_client_name_passport_C1",
+          "params": {
+            "client_id": 134,
+            "full_name": "Лора",
+            "passport_number": "803875561033"
+          },
+          "expected": [
+            [
+              "Лора",
+              "803875561033"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_name_passport_C2",
+          "params": {
+            "client_id": 946,
+            "full_name": "Глеб",
+            "passport_number": "604578727826"
+          },
+          "expected": [
+            [
+              "Глеб",
+              "604578727826"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_name_passport_C3",
+          "params": {
+            "client_id": 650,
+            "full_name": "Викентий",
+            "passport_number": "860745931595"
+          },
+          "expected": [
+            [
+              "Викентий",
+              "860745931595"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_name_passport_C4",
+          "params": {
+            "client_id": 537,
+            "full_name": "Акулина",
+            "passport_number": "843977337449"
+          },
+          "expected": [
+            [
+              "Акулина",
+              "843977337449"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_name_passport_C5",
+          "params": {
+            "client_id": 249,
+            "full_name": "Оксана",
+            "passport_number": "585170272941"
+          },
+          "expected": [
+            [
+              "Оксана",
+              "585170272941"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_name_passport_C6",
+          "params": {
+            "client_id": 416,
+            "full_name": "Анастасия",
+            "passport_number": "294788503720"
+          },
+          "expected": [
+            [
+              "Анастасия",
+              "294788503720"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_name_passport_C7",
+          "params": {
+            "client_id": 353,
+            "full_name": "Лариса",
+            "passport_number": "565609163991"
+          },
+          "expected": [
+            [
+              "Лариса",
+              "565609163991"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_name_passport_C8",
+          "params": {
+            "client_id": 764,
+            "full_name": "Амос",
+            "passport_number": "404433577956"
+          },
+          "expected": [
+            [
+              "Амос",
+              "404433577956"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_name_passport_C9",
+          "params": {
+            "client_id": 766,
+            "full_name": "Аникита",
+            "passport_number": "767849264940"
+          },
+          "expected": [
+            [
+              "Аникита",
+              "767849264940"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_name_passport_C10",
+          "params": {
+            "client_id": 424,
+            "full_name": "Мина",
+            "passport_number": "601785560456"
+          },
+          "expected": [
+            [
+              "Мина",
+              "601785560456"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_name_passport_C11",
+          "params": {
+            "client_id": 425,
+            "full_name": "Виссарион",
+            "passport_number": "985475913263"
+          },
+          "expected": [
+            [
+              "Виссарион",
+              "985475913263"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_name_passport_C12",
+          "params": {
+            "client_id": 520,
+            "full_name": "Мартьян",
+            "passport_number": "942502613145"
+          },
+          "expected": [
+            [
+              "Мартьян",
+              "942502613145"
+            ]
+          ],
+          "checks": []
+        }
+      ],
+      "columns": [
+        "clients.id",
+        "clients.full_name",
+        "clients.passport_number",
+        "clients.created_at",
+        "vaults.id",
+        "vaults.vault_name",
+        "vaults.capacity_g",
+        "vaults.location",
+        "gold_deposits.id",
+        "gold_deposits.client_id",
+        "gold_deposits.vault_id",
+        "gold_deposits.weight_g",
+        "gold_deposits.deposit_date"
+      ],
+      "example": {
+        "clients": {
+          "columns": [
+            "id",
+            "full_name",
+            "passport_number",
+            "created_at"
+          ],
+          "rows": [
+            [
+              134,
+              "Лора",
+              "803875561033",
+              null
+            ]
+          ]
+        },
+        "vaults": {
+          "columns": [
+            "id",
+            "vault_name",
+            "capacity_g",
+            "location"
+          ],
+          "rows": []
+        },
+        "gold_deposits": {
+          "columns": [
+            "id",
+            "client_id",
+            "vault_id",
+            "weight_g",
+            "deposit_date"
+          ],
+          "rows": []
+        }
+      },
+      "checks": []
+    },
+    {
+      "test_id": "002",
+      "alias": "select_vault_name_capacity",
+      "description": "Выбрать названия всех хранилищ и их вместимость",
+      "md_description": "### Контекст\nНеобходимо проверить доступные хранилища и их вместимость.\n\n### Поля\n`vault_name`, `capacity_g`\n\n### Требование\nСформировать SQL-запрос для таблицы `vaults`.",
+      "type": "select",
+      "difficulty": 1,
+      "order_matters": false,
+      "needHardCleanUpAfterTest": false,
+      "per_test_setup": "",
+      "template_solution": "SELECT vault_name, capacity_g FROM vaults;",
+      "template_solution_check": {
+        "check_type": "compare_select",
+        "expected_columns": [
+          "vault_name",
+          "capacity_g"
+        ],
+        "order_matters": false
+      },
+      "data_templates": [
+        "INSERT INTO vaults (id, vault_name, capacity_g) VALUES ({{vault_id}}, {{vault_name}}, {{capacity_g}});"
+      ],
+      "placeholders": {
+        "vault_id": {
+          "type": "int"
+        },
+        "vault_name": {
+          "type": "string",
+          "format": "vault"
+        },
+        "capacity_g": {
+          "type": "decimal"
+        }
+      },
+      "variations": 12,
+      "cases": [
+        {
+          "case_id": "select_vault_name_capacity_C1",
+          "params": {
+            "vault_id": 336,
+            "vault_name": "cdaNUC",
+            "capacity_g": 517.79
+          },
+          "expected": [
+            [
+              "cdaNUC",
+              517.79
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_vault_name_capacity_C2",
+          "params": {
+            "vault_id": 244,
+            "vault_name": "jjMfaO",
+            "capacity_g": 48.96
+          },
+          "expected": [
+            [
+              "jjMfaO",
+              48.96
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_vault_name_capacity_C3",
+          "params": {
+            "vault_id": 658,
+            "vault_name": "FDqtyUsxJ",
+            "capacity_g": 742.04
+          },
+          "expected": [
+            [
+              "FDqtyUsxJ",
+              742.04
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_vault_name_capacity_C4",
+          "params": {
+            "vault_id": 539,
+            "vault_name": "DzOOQAr",
+            "capacity_g": 598.29
+          },
+          "expected": [
+            [
+              "DzOOQAr",
+              598.29
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_vault_name_capacity_C5",
+          "params": {
+            "vault_id": 537,
+            "vault_name": "sXjhRmUuTc",
+            "capacity_g": 446.85
+          },
+          "expected": [
+            [
+              "sXjhRmUuTc",
+              446.85
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_vault_name_capacity_C6",
+          "params": {
+            "vault_id": 896,
+            "vault_name": "CDZlM",
+            "capacity_g": 922.28
+          },
+          "expected": [
+            [
+              "CDZlM",
+              922.28
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_vault_name_capacity_C7",
+          "params": {
+            "vault_id": 650,
+            "vault_name": "kHVXF",
+            "capacity_g": 484.12
+          },
+          "expected": [
+            [
+              "kHVXF",
+              484.12
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_vault_name_capacity_C8",
+          "params": {
+            "vault_id": 108,
+            "vault_name": "FhUjjbPXn",
+            "capacity_g": 488.52
+          },
+          "expected": [
+            [
+              "FhUjjbPXn",
+              488.52
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_vault_name_capacity_C9",
+          "params": {
+            "vault_id": 199,
+            "vault_name": "RcgTVKZ",
+            "capacity_g": 695.53
+          },
+          "expected": [
+            [
+              "RcgTVKZ",
+              695.53
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_vault_name_capacity_C10",
+          "params": {
+            "vault_id": 819,
+            "vault_name": "noxct",
+            "capacity_g": 523.9
+          },
+          "expected": [
+            [
+              "noxct",
+              523.9
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_vault_name_capacity_C11",
+          "params": {
+            "vault_id": 939,
+            "vault_name": "mcHfMgEFU",
+            "capacity_g": 36.07
+          },
+          "expected": [
+            [
+              "mcHfMgEFU",
+              36.07
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_vault_name_capacity_C12",
+          "params": {
+            "vault_id": 120,
+            "vault_name": "hOiTekZR",
+            "capacity_g": 848.43
+          },
+          "expected": [
+            [
+              "hOiTekZR",
+              848.43
+            ]
+          ],
+          "checks": []
+        }
+      ],
+      "columns": [
+        "clients.id",
+        "clients.full_name",
+        "clients.passport_number",
+        "clients.created_at",
+        "vaults.id",
+        "vaults.vault_name",
+        "vaults.capacity_g",
+        "vaults.location",
+        "gold_deposits.id",
+        "gold_deposits.client_id",
+        "gold_deposits.vault_id",
+        "gold_deposits.weight_g",
+        "gold_deposits.deposit_date"
+      ],
+      "example": {
+        "clients": {
+          "columns": [
+            "id",
+            "full_name",
+            "passport_number",
+            "created_at"
+          ],
+          "rows": []
+        },
+        "vaults": {
+          "columns": [
+            "id",
+            "vault_name",
+            "capacity_g",
+            "location"
+          ],
+          "rows": [
+            [
+              336,
+              "cdaNUC",
+              517.79,
+              null
+            ]
+          ]
+        },
+        "gold_deposits": {
+          "columns": [
+            "id",
+            "client_id",
+            "vault_id",
+            "weight_g",
+            "deposit_date"
+          ],
+          "rows": []
+        }
+      },
+      "checks": []
+    },
+    {
+      "test_id": "003",
+      "alias": "select_gold_deposits_filter",
+      "description": "Выбрать все депозиты, где вес золота больше 500 грамм",
+      "md_description": "### Контекст\nНеобходимо вывести все депозиты с весом золота больше 500 грамм для анализа крупных вкладов.\n\n### Поля\n`client_id`, `vault_id`, `weight_g`, `deposit_date`\n\n### Требование\nСформировать SQL-запрос с фильтром по весу.",
+      "type": "select",
+      "difficulty": 1,
+      "order_matters": false,
+      "needHardCleanUpAfterTest": false,
+      "per_test_setup": "",
+      "template_solution": "SELECT * FROM gold_deposits WHERE weight_g > 500;",
+      "template_solution_check": {
+        "check_type": "compare_select",
+        "expected_columns": [
+          "client_id",
+          "vault_id",
+          "weight_g",
+          "deposit_date"
+        ],
+        "order_matters": false
+      },
+      "data_templates": [
+        "INSERT INTO clients (id, full_name, passport_number) VALUES ({{client_id}}, {{full_name}}, {{passport_number}});",
+        "INSERT INTO vaults (id, vault_name, capacity_g) VALUES ({{vault_id}}, {{vault_name}}, {{capacity_g}});",
+        "INSERT INTO gold_deposits (client_id, vault_id, weight_g, deposit_date) VALUES ({{client_id}}, {{vault_id}}, {{weight_g}}, {{deposit_date}});"
+      ],
+      "placeholders": {
+        "client_id": {
+          "type": "int"
+        },
+        "vault_id": {
+          "type": "int"
+        },
+        "full_name": {
+          "type": "string",
+          "format": "name"
+        },
+        "passport_number": {
+          "type": "string",
+          "format": "passport"
+        },
+        "vault_name": {
+          "type": "string",
+          "format": "vault"
+        },
+        "capacity_g": {
+          "type": "decimal"
+        },
+        "weight_g": {
+          "type": "decimal"
+        },
+        "deposit_date": {
+          "type": "date"
+        }
+      },
+      "variations": 12,
+      "cases": [
+        {
+          "case_id": "select_gold_deposits_filter_C1",
+          "params": {
+            "client_id": 349,
+            "vault_id": 187,
+            "full_name": "Радим",
+            "passport_number": "800975661324",
+            "vault_name": "jrboHw",
+            "capacity_g": 320.67,
+            "weight_g": 402.38,
+            "deposit_date": "2012-02-26"
+          },
+          "expected": [],
+          "checks": []
+        },
+        {
+          "case_id": "select_gold_deposits_filter_C2",
+          "params": {
+            "client_id": 726,
+            "vault_id": 563,
+            "full_name": "Степан",
+            "passport_number": "620685287264",
+            "vault_name": "lNRNK",
+            "capacity_g": 331.04,
+            "weight_g": 831.16,
+            "deposit_date": "2006-01-23"
+          },
+          "expected": [
+            [
+              1,
+              726,
+              563,
+              831.16,
+              "2006-01-23"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_gold_deposits_filter_C3",
+          "params": {
+            "client_id": 599,
+            "vault_id": 924,
+            "full_name": "Агап",
+            "passport_number": "703388193072",
+            "vault_name": "IiTrqU",
+            "capacity_g": 406.23,
+            "weight_g": 862.08,
+            "deposit_date": "2005-03-02"
+          },
+          "expected": [
+            [
+              1,
+              599,
+              924,
+              862.08,
+              "2005-03-02"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_gold_deposits_filter_C4",
+          "params": {
+            "client_id": 261,
+            "vault_id": 380,
+            "full_name": "Михаил",
+            "passport_number": "027304381799",
+            "vault_name": "iVGowLaHm",
+            "capacity_g": 713.6,
+            "weight_g": 410.06,
+            "deposit_date": "2020-12-03"
+          },
+          "expected": [],
+          "checks": []
+        },
+        {
+          "case_id": "select_gold_deposits_filter_C5",
+          "params": {
+            "client_id": 496,
+            "vault_id": 706,
+            "full_name": "Харлампий",
+            "passport_number": "332357149395",
+            "vault_name": "BfKjzBE",
+            "capacity_g": 22.64,
+            "weight_g": 864.45,
+            "deposit_date": "1998-11-16"
+          },
+          "expected": [
+            [
+              1,
+              496,
+              706,
+              864.45,
+              "1998-11-16"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_gold_deposits_filter_C6",
+          "params": {
+            "client_id": 884,
+            "vault_id": 302,
+            "full_name": "Мир",
+            "passport_number": "742628628538",
+            "vault_name": "TdSJKawwc",
+            "capacity_g": 448.1,
+            "weight_g": 83.54,
+            "deposit_date": "2002-05-15"
+          },
+          "expected": [],
+          "checks": []
+        },
+        {
+          "case_id": "select_gold_deposits_filter_C7",
+          "params": {
+            "client_id": 756,
+            "vault_id": 854,
+            "full_name": "Бронислав",
+            "passport_number": "040711925356",
+            "vault_name": "VIzGwoayu",
+            "capacity_g": 806.54,
+            "weight_g": 820.17,
+            "deposit_date": "2013-11-20"
+          },
+          "expected": [
+            [
+              1,
+              756,
+              854,
+              820.17,
+              "2013-11-20"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_gold_deposits_filter_C8",
+          "params": {
+            "client_id": 351,
+            "vault_id": 330,
+            "full_name": "Лазарь",
+            "passport_number": "928215820960",
+            "vault_name": "LfGLOdwT",
+            "capacity_g": 791.79,
+            "weight_g": 619.04,
+            "deposit_date": "1999-05-06"
+          },
+          "expected": [
+            [
+              1,
+              351,
+              330,
+              619.04,
+              "1999-05-06"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_gold_deposits_filter_C9",
+          "params": {
+            "client_id": 154,
+            "vault_id": 792,
+            "full_name": "Рубен",
+            "passport_number": "089488219010",
+            "vault_name": "RExRSWTW",
+            "capacity_g": 574.89,
+            "weight_g": 247.97,
+            "deposit_date": "1998-06-23"
+          },
+          "expected": [],
+          "checks": []
+        },
+        {
+          "case_id": "select_gold_deposits_filter_C10",
+          "params": {
+            "client_id": 722,
+            "vault_id": 572,
+            "full_name": "Никон",
+            "passport_number": "657460392610",
+            "vault_name": "wUholY",
+            "capacity_g": 105.6,
+            "weight_g": 760.65,
+            "deposit_date": "2003-08-20"
+          },
+          "expected": [
+            [
+              1,
+              722,
+              572,
+              760.65,
+              "2003-08-20"
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_gold_deposits_filter_C11",
+          "params": {
+            "client_id": 170,
+            "vault_id": 77,
+            "full_name": "Панкрат",
+            "passport_number": "953080356843",
+            "vault_name": "uxnSJgQ",
+            "capacity_g": 392.62,
+            "weight_g": 80.33,
+            "deposit_date": "1997-03-25"
+          },
+          "expected": [],
+          "checks": []
+        },
+        {
+          "case_id": "select_gold_deposits_filter_C12",
+          "params": {
+            "client_id": 204,
+            "vault_id": 68,
+            "full_name": "Никифор",
+            "passport_number": "174555308577",
+            "vault_name": "TehZbDf",
+            "capacity_g": 562.54,
+            "weight_g": 100.27,
+            "deposit_date": "2004-01-21"
+          },
+          "expected": [],
+          "checks": []
+        }
+      ],
+      "columns": [
+        "clients.id",
+        "clients.full_name",
+        "clients.passport_number",
+        "clients.created_at",
+        "vaults.id",
+        "vaults.vault_name",
+        "vaults.capacity_g",
+        "vaults.location",
+        "gold_deposits.id",
+        "gold_deposits.client_id",
+        "gold_deposits.vault_id",
+        "gold_deposits.weight_g",
+        "gold_deposits.deposit_date"
+      ],
+      "example": {
+        "clients": {
+          "columns": [
+            "id",
+            "full_name",
+            "passport_number",
+            "created_at"
+          ],
+          "rows": [
+            [
+              349,
+              "Радим",
+              "800975661324",
+              null
+            ]
+          ]
+        },
+        "vaults": {
+          "columns": [
+            "id",
+            "vault_name",
+            "capacity_g",
+            "location"
+          ],
+          "rows": [
+            [
+              187,
+              "jrboHw",
+              320.67,
+              null
+            ]
+          ]
+        },
+        "gold_deposits": {
+          "columns": [
+            "id",
+            "client_id",
+            "vault_id",
+            "weight_g",
+            "deposit_date"
+          ],
+          "rows": [
+            [
+              1,
+              349,
+              187,
+              402.38,
+              "2012-02-26"
+            ]
+          ]
+        }
+      },
+      "checks": []
+    },
+    {
+      "test_id": "004",
+      "alias": "insert_client",
+      "description": "Добавить нового клиента",
+      "md_description": "### Контекст\nНеобходимо создать запись о новом клиенте для хранения золота.\n\n### Данные для вставки\n| Поле | Значение |\n|------|---------|\n| id | 1 |\n| full_name | 'Иван Иванов' |\n| passport_number | '4500 123456' |\n\n### Требование\nСформировать SQL-запрос INSERT в таблицу `clients`.",
+      "type": "insert",
+      "difficulty": 1,
+      "order_matters": false,
+      "needHardCleanUpAfterTest": false,
+      "per_test_setup": "",
+      "template_solution": "INSERT INTO clients (id, full_name, passport_number) VALUES (1, 'Иван Иванов', '4500 123456');",
+      "template_solution_check": {},
+      "data_templates": [
+        "INSERT INTO clients (id, full_name, passport_number) VALUES ({{client_id}}, {{full_name}}, {{passport_number}});"
+      ],
+      "placeholders": {
+        "client_id": {
+          "type": "int"
+        },
+        "full_name": {
+          "type": "string",
+          "format": "name"
+        },
+        "passport_number": {
+          "type": "string",
+          "format": "passport"
+        }
+      },
+      "variations": 1,
+      "cases": [
+        {
+          "case_id": "insert_client_C1",
+          "params": {
+            "client_id": 171,
+            "full_name": "Аскольд",
+            "passport_number": "345050900854"
+          },
+          "expected": [],
+          "checks": [
+            {
+              "check_id": "chk_insert_client_001",
+              "check_type": "compare_select",
+              "check_sql": "SELECT * FROM clients WHERE id=1 AND full_name='Иван Иванов' AND passport_number='4500 123456';",
+              "check_expected": {
+                "type": "rows",
+                "rows": [
+                  [
+                    1,
+                    "Иван Иванов",
+                    "4500 123456",
+                    null
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "columns": [
+        "clients.id",
+        "clients.full_name",
+        "clients.passport_number",
+        "clients.created_at",
+        "vaults.id",
+        "vaults.vault_name",
+        "vaults.capacity_g",
+        "vaults.location",
+        "gold_deposits.id",
+        "gold_deposits.client_id",
+        "gold_deposits.vault_id",
+        "gold_deposits.weight_g",
+        "gold_deposits.deposit_date"
+      ],
+      "example": {
+        "clients": {
+          "columns": [
+            "id",
+            "full_name",
+            "passport_number",
+            "created_at"
+          ],
+          "rows": [
+            [
+              171,
+              "Аскольд",
+              "345050900854",
+              null
+            ],
+            [
+              1,
+              "Иван Иванов",
+              "4500 123456",
+              null
+            ]
+          ]
+        },
+        "vaults": {
+          "columns": [
+            "id",
+            "vault_name",
+            "capacity_g",
+            "location"
+          ],
+          "rows": []
+        },
+        "gold_deposits": {
+          "columns": [
+            "id",
+            "client_id",
+            "vault_id",
+            "weight_g",
+            "deposit_date"
+          ],
+          "rows": []
+        }
+      },
+      "checks": [
+        {
+          "check_id": "chk_insert_client_001",
+          "check_type": "compare_select",
+          "check_sql": "SELECT * FROM clients WHERE id=1 AND full_name='Иван Иванов' AND passport_number='4500 123456';",
+          "check_expected": null
+        }
+      ]
+    },
+    {
+      "test_id": "005",
+      "alias": "insert_vault",
+      "description": "Добавить новое хранилище",
+      "md_description": "### Контекст\nНеобходимо создать запись о новом хранилище для хранения золота.\n\n### Данные для вставки\n| Поле | Значение |\n|------|---------|\n| id | 1 |\n| vault_name | 'Хранилище A' |\n| capacity_g | 10000 |\n\n### Требование\nСформировать SQL-запрос INSERT в таблицу `vaults`.",
+      "type": "insert",
+      "difficulty": 1,
+      "order_matters": false,
+      "needHardCleanUpAfterTest": false,
+      "per_test_setup": "",
+      "template_solution": "INSERT INTO vaults (id, vault_name, capacity_g) VALUES (1, 'Хранилище A', 10000);",
+      "template_solution_check": {},
+      "data_templates": [
+        "INSERT INTO vaults (id, vault_name, capacity_g) VALUES ({{vault_id}}, {{vault_name}}, {{capacity_g}});"
+      ],
+      "placeholders": {
+        "vault_id": {
+          "type": "int"
+        },
+        "vault_name": {
+          "type": "string",
+          "format": "vault"
+        },
+        "capacity_g": {
+          "type": "decimal"
+        }
+      },
+      "variations": 1,
+      "cases": [
+        {
+          "case_id": "insert_vault_C1",
+          "params": {
+            "vault_id": 943,
+            "vault_name": "LAKBwA",
+            "capacity_g": 910.98
+          },
+          "expected": [],
+          "checks": [
+            {
+              "check_id": "chk_insert_vault_001",
+              "check_type": "compare_select",
+              "check_sql": "SELECT * FROM vaults WHERE id=1 AND vault_name='Хранилище A' AND capacity_g=10000;",
+              "check_expected": {
+                "type": "rows",
+                "rows": [
+                  [
+                    1,
+                    "Хранилище A",
+                    10000.0,
+                    null
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "columns": [
+        "clients.id",
+        "clients.full_name",
+        "clients.passport_number",
+        "clients.created_at",
+        "vaults.id",
+        "vaults.vault_name",
+        "vaults.capacity_g",
+        "vaults.location",
+        "gold_deposits.id",
+        "gold_deposits.client_id",
+        "gold_deposits.vault_id",
+        "gold_deposits.weight_g",
+        "gold_deposits.deposit_date"
+      ],
+      "example": {
+        "clients": {
+          "columns": [
+            "id",
+            "full_name",
+            "passport_number",
+            "created_at"
+          ],
+          "rows": []
+        },
+        "vaults": {
+          "columns": [
+            "id",
+            "vault_name",
+            "capacity_g",
+            "location"
+          ],
+          "rows": [
+            [
+              943,
+              "LAKBwA",
+              910.98,
+              null
+            ],
+            [
+              1,
+              "Хранилище A",
+              10000.0,
+              null
+            ]
+          ]
+        },
+        "gold_deposits": {
+          "columns": [
+            "id",
+            "client_id",
+            "vault_id",
+            "weight_g",
+            "deposit_date"
+          ],
+          "rows": []
+        }
+      },
+      "checks": [
+        {
+          "check_id": "chk_insert_vault_001",
+          "check_type": "compare_select",
+          "check_sql": "SELECT * FROM vaults WHERE id=1 AND vault_name='Хранилище A' AND capacity_g=10000;",
+          "check_expected": null
+        }
+      ]
+    },
+    {
+      "test_id": "006",
+      "alias": "insert_gold_deposit",
+      "description": "Добавить новый депозит",
+      "md_description": "### Контекст\nНеобходимо добавить запись о новом золотом вкладе клиента.\n\n### Данные для вставки\n| Поле | Значение |\n|------|---------|\n| id | 1 |\n| client_id | 1 |\n| vault_id | 1 |\n| weight_g | 750 |\n| deposit_date | '2025-11-01' |\n\n### Требование\nСформировать SQL-запрос INSERT в таблицу `gold_deposits`.",
+      "type": "insert",
+      "difficulty": 1,
+      "order_matters": false,
+      "needHardCleanUpAfterTest": false,
+      "per_test_setup": "",
+      "template_solution": "INSERT INTO gold_deposits (id, client_id, vault_id, weight_g, deposit_date) VALUES (1, 1, 1, 750, '2025-11-01');",
+      "template_solution_check": {},
+      "data_templates": [
+        "INSERT INTO gold_deposits (id, client_id, vault_id, weight_g, deposit_date) VALUES ({{deposit_id}}, {{client_id}}, {{vault_id}}, {{weight_g}}, {{deposit_date}});"
+      ],
+      "placeholders": {
+        "deposit_id": {
+          "type": "int"
+        },
+        "client_id": {
+          "type": "int"
+        },
+        "vault_id": {
+          "type": "int"
+        },
+        "weight_g": {
+          "type": "decimal"
+        },
+        "deposit_date": {
+          "type": "date"
+        }
+      },
+      "variations": 1,
+      "cases": [
+        {
+          "case_id": "insert_gold_deposit_C1",
+          "params": {
+            "deposit_id": 77,
+            "client_id": 132,
+            "vault_id": 535,
+            "weight_g": 575.67,
+            "deposit_date": "1999-12-25"
+          },
+          "expected": [],
+          "checks": [
+            {
+              "check_id": "chk_insert_deposit_001",
+              "check_type": "compare_select",
+              "check_sql": "SELECT * FROM gold_deposits WHERE id=1 AND client_id=1 AND vault_id=1 AND weight_g=750;",
+              "check_expected": {
+                "type": "rows",
+                "rows": [
+                  [
+                    1,
+                    1,
+                    1,
+                    750.0,
+                    "2025-11-01"
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "columns": [
+        "clients.id",
+        "clients.full_name",
+        "clients.passport_number",
+        "clients.created_at",
+        "vaults.id",
+        "vaults.vault_name",
+        "vaults.capacity_g",
+        "vaults.location",
+        "gold_deposits.id",
+        "gold_deposits.client_id",
+        "gold_deposits.vault_id",
+        "gold_deposits.weight_g",
+        "gold_deposits.deposit_date"
+      ],
+      "example": {
+        "clients": {
+          "columns": [
+            "id",
+            "full_name",
+            "passport_number",
+            "created_at"
+          ],
+          "rows": []
+        },
+        "vaults": {
+          "columns": [
+            "id",
+            "vault_name",
+            "capacity_g",
+            "location"
+          ],
+          "rows": []
+        },
+        "gold_deposits": {
+          "columns": [
+            "id",
+            "client_id",
+            "vault_id",
+            "weight_g",
+            "deposit_date"
+          ],
+          "rows": [
+            [
+              77,
+              132,
+              535,
+              575.67,
+              "1999-12-25"
+            ],
+            [
+              1,
+              1,
+              1,
+              750.0,
+              "2025-11-01"
+            ]
+          ]
+        }
+      },
+      "checks": [
+        {
+          "check_id": "chk_insert_deposit_001",
+          "check_type": "compare_select",
+          "check_sql": "SELECT * FROM gold_deposits WHERE id=1 AND client_id=1 AND vault_id=1 AND weight_g=750;",
+          "check_expected": null
+        }
+      ]
+    },
+    {
+      "test_id": "007",
+      "alias": "update_client_passport",
+      "description": "Обновить номер паспорта клиента",
+      "md_description": "### Контекст\nНеобходимо обновить номер паспорта клиента после замены документа.\n\n### Данные для обновления\n| Поле | Значение |\n|------|---------|\n| client_id | 1 |\n| passport_number | '4500 654321' |\n\n### Требование\nСформировать SQL-запрос UPDATE для таблицы `clients`.",
+      "type": "update",
+      "difficulty": 1,
+      "order_matters": false,
+      "needHardCleanUpAfterTest": false,
+      "per_test_setup": "",
+      "template_solution": "UPDATE clients SET passport_number='4500 654321' WHERE id=1;",
+      "template_solution_check": {},
+      "data_templates": [
+        "INSERT INTO clients (id, full_name, passport_number) VALUES (1, {{full_name}}, {{old_passport}});"
+      ],
+      "placeholders": {
+        "client_id": {
+          "type": "int"
+        },
+        "full_name": {
+          "type": "string",
+          "format": "name"
+        },
+        "old_passport": {
+          "type": "string",
+          "format": "passport"
+        },
+        "passport_number": {
+          "type": "string",
+          "format": "passport"
+        }
+      },
+      "variations": 1,
+      "cases": [
+        {
+          "case_id": "update_client_passport_C1",
+          "params": {
+            "client_id": 55,
+            "full_name": "Агафон",
+            "old_passport": "330317246077",
+            "passport_number": "038174563900"
+          },
+          "expected": [],
+          "checks": [
+            {
+              "check_id": "chk_update_client_001",
+              "check_type": "compare_select",
+              "check_sql": "SELECT * FROM clients WHERE id=1 AND passport_number='4500 654321';",
+              "check_expected": {
+                "type": "rows",
+                "rows": [
+                  [
+                    1,
+                    "Агафон",
+                    "4500 654321",
+                    null
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "columns": [
+        "clients.id",
+        "clients.full_name",
+        "clients.passport_number",
+        "clients.created_at",
+        "vaults.id",
+        "vaults.vault_name",
+        "vaults.capacity_g",
+        "vaults.location",
+        "gold_deposits.id",
+        "gold_deposits.client_id",
+        "gold_deposits.vault_id",
+        "gold_deposits.weight_g",
+        "gold_deposits.deposit_date"
+      ],
+      "example": {
+        "clients": {
+          "columns": [
+            "id",
+            "full_name",
+            "passport_number",
+            "created_at"
+          ],
+          "rows": [
+            [
+              1,
+              "Агафон",
+              "4500 654321",
+              null
+            ]
+          ]
+        },
+        "vaults": {
+          "columns": [
+            "id",
+            "vault_name",
+            "capacity_g",
+            "location"
+          ],
+          "rows": []
+        },
+        "gold_deposits": {
+          "columns": [
+            "id",
+            "client_id",
+            "vault_id",
+            "weight_g",
+            "deposit_date"
+          ],
+          "rows": []
+        }
+      },
+      "checks": [
+        {
+          "check_id": "chk_update_client_001",
+          "check_type": "compare_select",
+          "check_sql": "SELECT * FROM clients WHERE id=1 AND passport_number='4500 654321';",
+          "check_expected": null
+        }
+      ]
+    },
+    {
+      "test_id": "008",
+      "alias": "delete_deposit",
+      "description": "Удалить депозит клиента",
+      "md_description": "### Контекст\nНеобходимо удалить запись о депозите клиента по его ID.\n\n### Данные\n| Поле | Значение |\n|------|---------|\n| deposit_id | 1 |\n\n### Требование\nСформировать SQL-запрос DELETE для таблицы `gold_deposits`.",
+      "type": "delete",
+      "difficulty": 1,
+      "order_matters": false,
+      "needHardCleanUpAfterTest": false,
+      "per_test_setup": "",
+      "template_solution": "DELETE FROM gold_deposits WHERE id=1;",
+      "template_solution_check": {},
+      "data_templates": [
+        "INSERT INTO gold_deposits (id, client_id, vault_id, weight_g, deposit_date) VALUES (1, {{client_id}}, {{vault_id}}, {{weight_g}}, {{deposit_date}});"
+      ],
+      "placeholders": {
+        "deposit_id": {
+          "type": "int"
+        },
+        "client_id": {
+          "type": "int"
+        },
+        "vault_id": {
+          "type": "int"
+        },
+        "weight_g": {
+          "type": "decimal"
+        },
+        "deposit_date": {
+          "type": "date"
+        }
+      },
+      "variations": 1,
+      "cases": [
+        {
+          "case_id": "delete_deposit_C1",
+          "params": {
+            "deposit_id": 819,
+            "client_id": 801,
+            "vault_id": 665,
+            "weight_g": 521.29,
+            "deposit_date": "2021-06-17"
+          },
+          "expected": [],
+          "checks": [
+            {
+              "check_id": "chk_delete_deposit_001",
+              "check_type": "compare_select",
+              "check_sql": "SELECT * FROM gold_deposits WHERE id=1;",
+              "check_expected": {
+                "type": "rows",
+                "rows": []
+              }
+            }
+          ]
+        }
+      ],
+      "columns": [
+        "clients.id",
+        "clients.full_name",
+        "clients.passport_number",
+        "clients.created_at",
+        "vaults.id",
+        "vaults.vault_name",
+        "vaults.capacity_g",
+        "vaults.location",
+        "gold_deposits.id",
+        "gold_deposits.client_id",
+        "gold_deposits.vault_id",
+        "gold_deposits.weight_g",
+        "gold_deposits.deposit_date"
+      ],
+      "example": {
+        "clients": {
+          "columns": [
+            "id",
+            "full_name",
+            "passport_number",
+            "created_at"
+          ],
+          "rows": []
+        },
+        "vaults": {
+          "columns": [
+            "id",
+            "vault_name",
+            "capacity_g",
+            "location"
+          ],
+          "rows": []
+        },
+        "gold_deposits": {
+          "columns": [
+            "id",
+            "client_id",
+            "vault_id",
+            "weight_g",
+            "deposit_date"
+          ],
+          "rows": []
+        }
+      },
+      "checks": [
+        {
+          "check_id": "chk_delete_deposit_001",
+          "check_type": "compare_select",
+          "check_sql": "SELECT * FROM gold_deposits WHERE id=1;",
+          "check_expected": null
+        }
+      ]
+    },
+    {
+      "test_id": "009",
+      "alias": "select_total_gold_per_vault",
+      "description": "Посчитать общий вес золота в каждом хранилище",
+      "md_description": "### Контекст\nНеобходимо узнать, сколько граммов золота хранится в каждом хранилище.\n\n### Поля\n`vault_id`, `total_weight`\n\n### Требование\nСформировать SQL-запрос с агрегатной функцией SUM для таблицы `gold_deposits` с группировкой по `vault_id`.",
+      "type": "select",
+      "difficulty": 1,
+      "order_matters": false,
+      "needHardCleanUpAfterTest": false,
+      "per_test_setup": "",
+      "template_solution": "SELECT vault_id, SUM(weight_g) AS total_weight FROM gold_deposits GROUP BY vault_id;",
+      "template_solution_check": {
+        "check_type": "compare_select",
+        "expected_columns": [
+          "vault_id",
+          "total_weight"
+        ],
+        "order_matters": false
+      },
+      "data_templates": [
+        "INSERT INTO vaults (id, vault_name, capacity_g) VALUES ({{vault_id}}, {{vault_name}}, {{capacity_g}});",
+        "INSERT INTO gold_deposits (id, client_id, vault_id, weight_g, deposit_date) VALUES ({{deposit_id}}, {{client_id}}, {{vault_id}}, {{weight_g}}, {{deposit_date}});"
+      ],
+      "placeholders": {
+        "vault_id": {
+          "type": "int"
+        },
+        "vault_name": {
+          "type": "string",
+          "format": "vault"
+        },
+        "capacity_g": {
+          "type": "decimal"
+        },
+        "deposit_id": {
+          "type": "int"
+        },
+        "client_id": {
+          "type": "int"
+        },
+        "weight_g": {
+          "type": "decimal"
+        },
+        "deposit_date": {
+          "type": "date"
+        }
+      },
+      "variations": 12,
+      "cases": [
+        {
+          "case_id": "select_total_gold_per_vault_C1",
+          "params": {
+            "vault_id": 987,
+            "vault_name": "oFiimTSK",
+            "capacity_g": 685.0,
+            "deposit_id": 313,
+            "client_id": 932,
+            "weight_g": 162.7,
+            "deposit_date": "2019-10-06"
+          },
+          "expected": [
+            [
+              987,
+              162.7
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_total_gold_per_vault_C2",
+          "params": {
+            "vault_id": 152,
+            "vault_name": "eWMa",
+            "capacity_g": 824.55,
+            "deposit_id": 546,
+            "client_id": 552,
+            "weight_g": 722.76,
+            "deposit_date": "2005-08-02"
+          },
+          "expected": [
+            [
+              152,
+              722.76
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_total_gold_per_vault_C3",
+          "params": {
+            "vault_id": 249,
+            "vault_name": "QmklecP",
+            "capacity_g": 642.23,
+            "deposit_id": 256,
+            "client_id": 12,
+            "weight_g": 779.45,
+            "deposit_date": "2004-06-25"
+          },
+          "expected": [
+            [
+              249,
+              779.45
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_total_gold_per_vault_C4",
+          "params": {
+            "vault_id": 746,
+            "vault_name": "DekZkkFIxk",
+            "capacity_g": 776.86,
+            "deposit_id": 959,
+            "client_id": 607,
+            "weight_g": 813.56,
+            "deposit_date": "2023-04-06"
+          },
+          "expected": [
+            [
+              746,
+              813.56
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_total_gold_per_vault_C5",
+          "params": {
+            "vault_id": 786,
+            "vault_name": "wDbkZ",
+            "capacity_g": 684.72,
+            "deposit_id": 286,
+            "client_id": 984,
+            "weight_g": 161.22,
+            "deposit_date": "2019-07-21"
+          },
+          "expected": [
+            [
+              786,
+              161.22
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_total_gold_per_vault_C6",
+          "params": {
+            "vault_id": 204,
+            "vault_name": "eSnVwG",
+            "capacity_g": 490.04,
+            "deposit_id": 47,
+            "client_id": 935,
+            "weight_g": 565.16,
+            "deposit_date": "2002-03-06"
+          },
+          "expected": [
+            [
+              204,
+              565.16
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_total_gold_per_vault_C7",
+          "params": {
+            "vault_id": 715,
+            "vault_name": "BRyHWr",
+            "capacity_g": 63.96,
+            "deposit_id": 533,
+            "client_id": 886,
+            "weight_g": 81.03,
+            "deposit_date": "2002-08-18"
+          },
+          "expected": [
+            [
+              715,
+              81.03
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_total_gold_per_vault_C8",
+          "params": {
+            "vault_id": 15,
+            "vault_name": "PTUuzb",
+            "capacity_g": 119.45,
+            "deposit_id": 88,
+            "client_id": 786,
+            "weight_g": 854.53,
+            "deposit_date": "2008-10-07"
+          },
+          "expected": [
+            [
+              15,
+              854.53
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_total_gold_per_vault_C9",
+          "params": {
+            "vault_id": 409,
+            "vault_name": "TkoKEbj",
+            "capacity_g": 43.96,
+            "deposit_id": 741,
+            "client_id": 356,
+            "weight_g": 58.03,
+            "deposit_date": "2001-08-31"
+          },
+          "expected": [
+            [
+              409,
+              58.03
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_total_gold_per_vault_C10",
+          "params": {
+            "vault_id": 304,
+            "vault_name": "MTYaVyqTl",
+            "capacity_g": 225.38,
+            "deposit_id": 337,
+            "client_id": 16,
+            "weight_g": 35.99,
+            "deposit_date": "2014-06-15"
+          },
+          "expected": [
+            [
+              304,
+              35.99
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_total_gold_per_vault_C11",
+          "params": {
+            "vault_id": 406,
+            "vault_name": "xKcGDxttdu",
+            "capacity_g": 781.67,
+            "deposit_id": 449,
+            "client_id": 47,
+            "weight_g": 295.94,
+            "deposit_date": "2001-01-22"
+          },
+          "expected": [
+            [
+              406,
+              295.94
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_total_gold_per_vault_C12",
+          "params": {
+            "vault_id": 451,
+            "vault_name": "KqWCIDOJqq",
+            "capacity_g": 434.55,
+            "deposit_id": 589,
+            "client_id": 396,
+            "weight_g": 254.11,
+            "deposit_date": "2012-02-03"
+          },
+          "expected": [
+            [
+              451,
+              254.11
+            ]
+          ],
+          "checks": []
+        }
+      ],
+      "columns": [
+        "clients.id",
+        "clients.full_name",
+        "clients.passport_number",
+        "clients.created_at",
+        "vaults.id",
+        "vaults.vault_name",
+        "vaults.capacity_g",
+        "vaults.location",
+        "gold_deposits.id",
+        "gold_deposits.client_id",
+        "gold_deposits.vault_id",
+        "gold_deposits.weight_g",
+        "gold_deposits.deposit_date"
+      ],
+      "example": {
+        "clients": {
+          "columns": [
+            "id",
+            "full_name",
+            "passport_number",
+            "created_at"
+          ],
+          "rows": []
+        },
+        "vaults": {
+          "columns": [
+            "id",
+            "vault_name",
+            "capacity_g",
+            "location"
+          ],
+          "rows": [
+            [
+              987,
+              "oFiimTSK",
+              685.0,
+              null
+            ]
+          ]
+        },
+        "gold_deposits": {
+          "columns": [
+            "id",
+            "client_id",
+            "vault_id",
+            "weight_g",
+            "deposit_date"
+          ],
+          "rows": [
+            [
+              313,
+              932,
+              987,
+              162.7,
+              "2019-10-06"
+            ]
+          ]
+        }
+      },
+      "checks": []
+    },
+    {
+      "test_id": "010",
+      "alias": "select_client_deposits_join",
+      "description": "Выбрать имя клиента и вес его депозитов",
+      "md_description": "### Контекст\nНеобходимо сопоставить клиентов и их депозиты для отчета.\n\n### Поля\n`full_name`, `weight_g`\n\n### Требование\nСформировать SQL-запрос с JOIN между таблицами `clients` и `gold_deposits`.",
+      "type": "select",
+      "difficulty": 1,
+      "order_matters": false,
+      "needHardCleanUpAfterTest": false,
+      "per_test_setup": "",
+      "template_solution": "SELECT c.full_name, g.weight_g FROM clients c JOIN gold_deposits g ON c.id = g.client_id;",
+      "template_solution_check": {
+        "check_type": "compare_select",
+        "expected_columns": [
+          "full_name",
+          "weight_g"
+        ],
+        "order_matters": false
+      },
+      "data_templates": [
+        "INSERT INTO clients (id, full_name, passport_number) VALUES ({{client_id}}, {{full_name}}, {{passport_number}});",
+        "INSERT INTO gold_deposits (id, client_id, vault_id, weight_g, deposit_date) VALUES ({{deposit_id}}, {{client_id}}, {{vault_id}}, {{weight_g}}, {{deposit_date}});"
+      ],
+      "placeholders": {
+        "client_id": {
+          "type": "int"
+        },
+        "full_name": {
+          "type": "string",
+          "format": "name"
+        },
+        "passport_number": {
+          "type": "string",
+          "format": "passport"
+        },
+        "deposit_id": {
+          "type": "int"
+        },
+        "vault_id": {
+          "type": "int"
+        },
+        "weight_g": {
+          "type": "decimal"
+        },
+        "deposit_date": {
+          "type": "date"
+        }
+      },
+      "variations": 12,
+      "cases": [
+        {
+          "case_id": "select_client_deposits_join_C1",
+          "params": {
+            "client_id": 330,
+            "full_name": "Лаврентий",
+            "passport_number": "363750635602",
+            "deposit_id": 894,
+            "vault_id": 998,
+            "weight_g": 582.4,
+            "deposit_date": "2024-02-24"
+          },
+          "expected": [
+            [
+              "Лаврентий",
+              582.4
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_deposits_join_C2",
+          "params": {
+            "client_id": 663,
+            "full_name": "Карп",
+            "passport_number": "839416321198",
+            "deposit_id": 24,
+            "vault_id": 1,
+            "weight_g": 475.34,
+            "deposit_date": "2019-05-27"
+          },
+          "expected": [
+            [
+              "Карп",
+              475.34
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_deposits_join_C3",
+          "params": {
+            "client_id": 56,
+            "full_name": "Самуил",
+            "passport_number": "773190006995",
+            "deposit_id": 267,
+            "vault_id": 94,
+            "weight_g": 337.19,
+            "deposit_date": "2009-12-12"
+          },
+          "expected": [
+            [
+              "Самуил",
+              337.19
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_deposits_join_C4",
+          "params": {
+            "client_id": 693,
+            "full_name": "Добромысл",
+            "passport_number": "771774030573",
+            "deposit_id": 130,
+            "vault_id": 138,
+            "weight_g": 161.09,
+            "deposit_date": "2008-01-06"
+          },
+          "expected": [
+            [
+              "Добромысл",
+              161.09
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_deposits_join_C5",
+          "params": {
+            "client_id": 642,
+            "full_name": "Лидия",
+            "passport_number": "979546901235",
+            "deposit_id": 643,
+            "vault_id": 682,
+            "weight_g": 658.61,
+            "deposit_date": "2013-01-17"
+          },
+          "expected": [
+            [
+              "Лидия",
+              658.61
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_deposits_join_C6",
+          "params": {
+            "client_id": 294,
+            "full_name": "Аполлон",
+            "passport_number": "253972624928",
+            "deposit_id": 469,
+            "vault_id": 205,
+            "weight_g": 462.14,
+            "deposit_date": "2015-08-29"
+          },
+          "expected": [
+            [
+              "Аполлон",
+              462.14
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_deposits_join_C7",
+          "params": {
+            "client_id": 270,
+            "full_name": "Корнил",
+            "passport_number": "398600346958",
+            "deposit_id": 729,
+            "vault_id": 25,
+            "weight_g": 776.15,
+            "deposit_date": "2003-10-02"
+          },
+          "expected": [
+            [
+              "Корнил",
+              776.15
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_deposits_join_C8",
+          "params": {
+            "client_id": 326,
+            "full_name": "Трофим",
+            "passport_number": "574570962987",
+            "deposit_id": 834,
+            "vault_id": 44,
+            "weight_g": 516.45,
+            "deposit_date": "2008-03-19"
+          },
+          "expected": [
+            [
+              "Трофим",
+              516.45
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_deposits_join_C9",
+          "params": {
+            "client_id": 233,
+            "full_name": "Ксения",
+            "passport_number": "799105907430",
+            "deposit_id": 617,
+            "vault_id": 259,
+            "weight_g": 940.78,
+            "deposit_date": "2021-07-14"
+          },
+          "expected": [
+            [
+              "Ксения",
+              940.78
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_deposits_join_C10",
+          "params": {
+            "client_id": 223,
+            "full_name": "Август",
+            "passport_number": "183413376665",
+            "deposit_id": 305,
+            "vault_id": 438,
+            "weight_g": 839.78,
+            "deposit_date": "2014-06-13"
+          },
+          "expected": [
+            [
+              "Август",
+              839.78
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_deposits_join_C11",
+          "params": {
+            "client_id": 967,
+            "full_name": "Синклитикия",
+            "passport_number": "251881575080",
+            "deposit_id": 605,
+            "vault_id": 66,
+            "weight_g": 977.84,
+            "deposit_date": "2019-04-24"
+          },
+          "expected": [
+            [
+              "Синклитикия",
+              977.84
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_client_deposits_join_C12",
+          "params": {
+            "client_id": 108,
+            "full_name": "Аверкий",
+            "passport_number": "423583437751",
+            "deposit_id": 436,
+            "vault_id": 805,
+            "weight_g": 365.48,
+            "deposit_date": "2016-04-29"
+          },
+          "expected": [
+            [
+              "Аверкий",
+              365.48
+            ]
+          ],
+          "checks": []
+        }
+      ],
+      "columns": [
+        "clients.id",
+        "clients.full_name",
+        "clients.passport_number",
+        "clients.created_at",
+        "vaults.id",
+        "vaults.vault_name",
+        "vaults.capacity_g",
+        "vaults.location",
+        "gold_deposits.id",
+        "gold_deposits.client_id",
+        "gold_deposits.vault_id",
+        "gold_deposits.weight_g",
+        "gold_deposits.deposit_date"
+      ],
+      "example": {
+        "clients": {
+          "columns": [
+            "id",
+            "full_name",
+            "passport_number",
+            "created_at"
+          ],
+          "rows": [
+            [
+              330,
+              "Лаврентий",
+              "363750635602",
+              null
+            ]
+          ]
+        },
+        "vaults": {
+          "columns": [
+            "id",
+            "vault_name",
+            "capacity_g",
+            "location"
+          ],
+          "rows": []
+        },
+        "gold_deposits": {
+          "columns": [
+            "id",
+            "client_id",
+            "vault_id",
+            "weight_g",
+            "deposit_date"
+          ],
+          "rows": [
+            [
+              894,
+              330,
+              998,
+              582.4,
+              "2024-02-24"
+            ]
+          ]
+        }
+      },
+      "checks": []
+    },
+    {
+      "test_id": "011",
+      "alias": "update_vault_capacity",
+      "description": "Обновить вместимость хранилища",
+      "md_description": "### Контекст\nНеобходимо увеличить вместимость хранилища после модернизации.\n\n### Данные\n| Поле | Значение |\n|------|---------|\n| vault_id | 1 |\n| capacity_g | 15000 |\n\n### Требование\nСформировать SQL-запрос UPDATE для таблицы `vaults`.",
+      "type": "update",
+      "difficulty": 1,
+      "order_matters": false,
+      "needHardCleanUpAfterTest": false,
+      "per_test_setup": "",
+      "template_solution": "UPDATE vaults SET capacity_g=15000 WHERE id=1;",
+      "template_solution_check": {},
+      "data_templates": [
+        "INSERT INTO vaults (id, vault_name, capacity_g) VALUES (1, {{vault_name}}, {{old_capacity}});"
+      ],
+      "placeholders": {
+        "vault_id": {
+          "type": "int"
+        },
+        "vault_name": {
+          "type": "string",
+          "format": "vault"
+        },
+        "old_capacity": {
+          "type": "decimal"
+        },
+        "capacity_g": {
+          "type": "decimal"
+        }
+      },
+      "variations": 1,
+      "cases": [
+        {
+          "case_id": "update_vault_capacity_C1",
+          "params": {
+            "vault_id": 831,
+            "vault_name": "CvOdNv",
+            "old_capacity": 444.09,
+            "capacity_g": 750.61
+          },
+          "expected": [],
+          "checks": [
+            {
+              "check_id": "chk_update_vault_001",
+              "check_type": "compare_select",
+              "check_sql": "SELECT * FROM vaults WHERE id=1 AND capacity_g=15000;",
+              "check_expected": {
+                "type": "rows",
+                "rows": [
+                  [
+                    1,
+                    "CvOdNv",
+                    15000.0,
+                    null
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "columns": [
+        "clients.id",
+        "clients.full_name",
+        "clients.passport_number",
+        "clients.created_at",
+        "vaults.id",
+        "vaults.vault_name",
+        "vaults.capacity_g",
+        "vaults.location",
+        "gold_deposits.id",
+        "gold_deposits.client_id",
+        "gold_deposits.vault_id",
+        "gold_deposits.weight_g",
+        "gold_deposits.deposit_date"
+      ],
+      "example": {
+        "clients": {
+          "columns": [
+            "id",
+            "full_name",
+            "passport_number",
+            "created_at"
+          ],
+          "rows": []
+        },
+        "vaults": {
+          "columns": [
+            "id",
+            "vault_name",
+            "capacity_g",
+            "location"
+          ],
+          "rows": [
+            [
+              1,
+              "CvOdNv",
+              15000.0,
+              null
+            ]
+          ]
+        },
+        "gold_deposits": {
+          "columns": [
+            "id",
+            "client_id",
+            "vault_id",
+            "weight_g",
+            "deposit_date"
+          ],
+          "rows": []
+        }
+      },
+      "checks": [
+        {
+          "check_id": "chk_update_vault_001",
+          "check_type": "compare_select",
+          "check_sql": "SELECT * FROM vaults WHERE id=1 AND capacity_g=15000;",
+          "check_expected": null
+        }
+      ]
+    },
+    {
+      "test_id": "012",
+      "alias": "delete_client",
+      "description": "Удалить клиента",
+      "md_description": "### Контекст\nНеобходимо удалить клиента и его депозиты по ID.\n\n### Данные\n| Поле | Значение |\n|------|---------|\n| client_id | 1 |\n\n### Требование\nСформировать SQL-запрос DELETE для таблицы `clients`.",
+      "type": "delete",
+      "difficulty": 1,
+      "order_matters": false,
+      "needHardCleanUpAfterTest": false,
+      "per_test_setup": "",
+      "template_solution": "DELETE FROM clients WHERE id=1;",
+      "template_solution_check": {},
+      "data_templates": [
+        "INSERT INTO clients (id, full_name, passport_number) VALUES (1, {{full_name}}, {{passport_number}});",
+        "INSERT INTO gold_deposits (id, client_id, vault_id, weight_g, deposit_date) VALUES ({{deposit_id}}, 1, {{vault_id}}, {{weight_g}}, {{deposit_date}});"
+      ],
+      "placeholders": {
+        "client_id": {
+          "type": "int"
+        },
+        "full_name": {
+          "type": "string",
+          "format": "name"
+        },
+        "passport_number": {
+          "type": "string",
+          "format": "passport"
+        },
+        "deposit_id": {
+          "type": "int"
+        },
+        "vault_id": {
+          "type": "int"
+        },
+        "weight_g": {
+          "type": "decimal"
+        },
+        "deposit_date": {
+          "type": "date"
+        }
+      },
+      "variations": 1,
+      "cases": [
+        {
+          "case_id": "delete_client_C1",
+          "params": {
+            "client_id": 996,
+            "full_name": "Никодим",
+            "passport_number": "332817441735",
+            "deposit_id": 248,
+            "vault_id": 704,
+            "weight_g": 684.57,
+            "deposit_date": "2025-07-19"
+          },
+          "expected": [],
+          "checks": [
+            {
+              "check_id": "chk_delete_client_001",
+              "check_type": "compare_select",
+              "check_sql": "SELECT * FROM clients WHERE id=1;",
+              "check_expected": {
+                "type": "rows",
+                "rows": []
+              }
+            }
+          ]
+        }
+      ],
+      "columns": [
+        "clients.id",
+        "clients.full_name",
+        "clients.passport_number",
+        "clients.created_at",
+        "vaults.id",
+        "vaults.vault_name",
+        "vaults.capacity_g",
+        "vaults.location",
+        "gold_deposits.id",
+        "gold_deposits.client_id",
+        "gold_deposits.vault_id",
+        "gold_deposits.weight_g",
+        "gold_deposits.deposit_date"
+      ],
+      "example": {
+        "clients": {
+          "columns": [
+            "id",
+            "full_name",
+            "passport_number",
+            "created_at"
+          ],
+          "rows": []
+        },
+        "vaults": {
+          "columns": [
+            "id",
+            "vault_name",
+            "capacity_g",
+            "location"
+          ],
+          "rows": []
+        },
+        "gold_deposits": {
+          "columns": [
+            "id",
+            "client_id",
+            "vault_id",
+            "weight_g",
+            "deposit_date"
+          ],
+          "rows": [
+            [
+              248,
+              1,
+              704,
+              684.57,
+              "2025-07-19"
+            ]
+          ]
+        }
+      },
+      "checks": [
+        {
+          "check_id": "chk_delete_client_001",
+          "check_type": "compare_select",
+          "check_sql": "SELECT * FROM clients WHERE id=1;",
+          "check_expected": null
+        }
+      ]
+    },
+    {
+      "test_id": "013",
+      "alias": "select_large_deposits_join",
+      "description": "Выбрать имена клиентов и вес депозитов больше 500 грамм",
+      "md_description": "### Контекст\nНеобходимо сформировать отчет о крупных депозитах для аналитики.\n\n### Поля\n`full_name`, `weight_g`\n\n### Требование\nСформировать SQL-запрос с JOIN и фильтром WHERE.",
+      "type": "select",
+      "difficulty": 1,
+      "order_matters": false,
+      "needHardCleanUpAfterTest": false,
+      "per_test_setup": "",
+      "template_solution": "SELECT c.full_name, g.weight_g FROM clients c JOIN gold_deposits g ON c.id=g.client_id WHERE g.weight_g>500;",
+      "template_solution_check": {
+        "check_type": "compare_select",
+        "expected_columns": [
+          "full_name",
+          "weight_g"
+        ],
+        "order_matters": false
+      },
+      "data_templates": [
+        "INSERT INTO clients (id, full_name, passport_number) VALUES ({{client_id}}, {{full_name}}, {{passport_number}});",
+        "INSERT INTO gold_deposits (id, client_id, vault_id, weight_g, deposit_date) VALUES ({{deposit_id}}, {{client_id}}, {{vault_id}}, {{weight_g}}, {{deposit_date}});"
+      ],
+      "placeholders": {
+        "client_id": {
+          "type": "int"
+        },
+        "full_name": {
+          "type": "string",
+          "format": "name"
+        },
+        "passport_number": {
+          "type": "string",
+          "format": "passport"
+        },
+        "deposit_id": {
+          "type": "int"
+        },
+        "vault_id": {
+          "type": "int"
+        },
+        "weight_g": {
+          "type": "decimal"
+        },
+        "deposit_date": {
+          "type": "date"
+        }
+      },
+      "variations": 12,
+      "cases": [
+        {
+          "case_id": "select_large_deposits_join_C1",
+          "params": {
+            "client_id": 887,
+            "full_name": "Климент",
+            "passport_number": "228998077660",
+            "deposit_id": 838,
+            "vault_id": 403,
+            "weight_g": 410.93,
+            "deposit_date": "2006-09-23"
+          },
+          "expected": [],
+          "checks": []
+        },
+        {
+          "case_id": "select_large_deposits_join_C2",
+          "params": {
+            "client_id": 832,
+            "full_name": "Софон",
+            "passport_number": "499101072973",
+            "deposit_id": 12,
+            "vault_id": 87,
+            "weight_g": 575.86,
+            "deposit_date": "1997-07-24"
+          },
+          "expected": [
+            [
+              "Софон",
+              575.86
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_large_deposits_join_C3",
+          "params": {
+            "client_id": 292,
+            "full_name": "Карл",
+            "passport_number": "070429601128",
+            "deposit_id": 991,
+            "vault_id": 615,
+            "weight_g": 931.55,
+            "deposit_date": "2004-07-20"
+          },
+          "expected": [
+            [
+              "Карл",
+              931.55
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_large_deposits_join_C4",
+          "params": {
+            "client_id": 812,
+            "full_name": "Потап",
+            "passport_number": "208270533890",
+            "deposit_id": 749,
+            "vault_id": 86,
+            "weight_g": 332.98,
+            "deposit_date": "2021-04-01"
+          },
+          "expected": [],
+          "checks": []
+        },
+        {
+          "case_id": "select_large_deposits_join_C5",
+          "params": {
+            "client_id": 485,
+            "full_name": "Вера",
+            "passport_number": "499527276300",
+            "deposit_id": 974,
+            "vault_id": 480,
+            "weight_g": 984.99,
+            "deposit_date": "2004-12-16"
+          },
+          "expected": [
+            [
+              "Вера",
+              984.99
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_large_deposits_join_C6",
+          "params": {
+            "client_id": 409,
+            "full_name": "Афанасий",
+            "passport_number": "111804288818",
+            "deposit_id": 170,
+            "vault_id": 34,
+            "weight_g": 494.22,
+            "deposit_date": "2019-06-08"
+          },
+          "expected": [],
+          "checks": []
+        },
+        {
+          "case_id": "select_large_deposits_join_C7",
+          "params": {
+            "client_id": 245,
+            "full_name": "Любомир",
+            "passport_number": "244898669629",
+            "deposit_id": 5,
+            "vault_id": 950,
+            "weight_g": 903.41,
+            "deposit_date": "2024-03-02"
+          },
+          "expected": [
+            [
+              "Любомир",
+              903.41
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_large_deposits_join_C8",
+          "params": {
+            "client_id": 102,
+            "full_name": "Ульяна",
+            "passport_number": "398523778526",
+            "deposit_id": 155,
+            "vault_id": 487,
+            "weight_g": 337.56,
+            "deposit_date": "2002-02-11"
+          },
+          "expected": [],
+          "checks": []
+        },
+        {
+          "case_id": "select_large_deposits_join_C9",
+          "params": {
+            "client_id": 871,
+            "full_name": "Вениамин",
+            "passport_number": "792807750915",
+            "deposit_id": 16,
+            "vault_id": 982,
+            "weight_g": 422.46,
+            "deposit_date": "2020-12-12"
+          },
+          "expected": [],
+          "checks": []
+        },
+        {
+          "case_id": "select_large_deposits_join_C10",
+          "params": {
+            "client_id": 803,
+            "full_name": "Мария",
+            "passport_number": "509093990247",
+            "deposit_id": 415,
+            "vault_id": 646,
+            "weight_g": 12.56,
+            "deposit_date": "1995-12-27"
+          },
+          "expected": [],
+          "checks": []
+        },
+        {
+          "case_id": "select_large_deposits_join_C11",
+          "params": {
+            "client_id": 367,
+            "full_name": "Ульян",
+            "passport_number": "675555952222",
+            "deposit_id": 839,
+            "vault_id": 21,
+            "weight_g": 710.4,
+            "deposit_date": "2014-01-02"
+          },
+          "expected": [
+            [
+              "Ульян",
+              710.4
+            ]
+          ],
+          "checks": []
+        },
+        {
+          "case_id": "select_large_deposits_join_C12",
+          "params": {
+            "client_id": 765,
+            "full_name": "Владилен",
+            "passport_number": "579372780229",
+            "deposit_id": 784,
+            "vault_id": 320,
+            "weight_g": 924.7,
+            "deposit_date": "2015-11-03"
+          },
+          "expected": [
+            [
+              "Владилен",
+              924.7
+            ]
+          ],
+          "checks": []
+        }
+      ],
+      "columns": [
+        "clients.id",
+        "clients.full_name",
+        "clients.passport_number",
+        "clients.created_at",
+        "vaults.id",
+        "vaults.vault_name",
+        "vaults.capacity_g",
+        "vaults.location",
+        "gold_deposits.id",
+        "gold_deposits.client_id",
+        "gold_deposits.vault_id",
+        "gold_deposits.weight_g",
+        "gold_deposits.deposit_date"
+      ],
+      "example": {
+        "clients": {
+          "columns": [
+            "id",
+            "full_name",
+            "passport_number",
+            "created_at"
+          ],
+          "rows": [
+            [
+              887,
+              "Климент",
+              "228998077660",
+              null
+            ]
+          ]
+        },
+        "vaults": {
+          "columns": [
+            "id",
+            "vault_name",
+            "capacity_g",
+            "location"
+          ],
+          "rows": []
+        },
+        "gold_deposits": {
+          "columns": [
+            "id",
+            "client_id",
+            "vault_id",
+            "weight_g",
+            "deposit_date"
+          ],
+          "rows": [
+            [
+              838,
+              887,
+              403,
+              410.93,
+              "2006-09-23"
+            ]
+          ]
+        }
+      },
+      "checks": []
+    }
+  ]
+}

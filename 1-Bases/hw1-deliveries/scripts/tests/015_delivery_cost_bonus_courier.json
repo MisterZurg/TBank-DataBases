@@ -1,0 +1,360 @@
+{
+  "test_id": "015",
+  "description": "Вывести имена клиентов, стоимость доставки с 10% наценкой и фамилию курьера",
+  "alias": "delivery_cost_bonus_courier",
+  "hardCleanUpAfterTest": true,
+  "order_matters": false,
+  "data_templates": [
+    "INSERT INTO clients(id, first_name,last_name) VALUES (1,{{cf1}},{{cl1}}),(2,{{cf2}},{{cl2}}); INSERT INTO couriers(id, first_name,last_name) VALUES (1,{{rf1}},{{rl1}}),(2,{{rf2}},{{rl2}}); INSERT INTO deliveries(id, client_id,courier_id,delivery_date,delivery_cost) VALUES (1,1,1,{{d1}},{{c1}}),(2,2,2,{{d2}},{{c2}});"
+  ],
+  "cases": [
+    {
+      "case_id": "015_1",
+      "params": {
+        "cf1": "cvzd",
+        "cl1": "DCBABNQ",
+        "cf2": "XHLGrG",
+        "cl2": "Owfovy",
+        "rf1": "jQdDUTh",
+        "rl1": "HzvhereA",
+        "rf2": "FULHk",
+        "rl2": "FoaeJcbp",
+        "d1": "'2025-09-11'",
+        "d2": "'2025-09-13'",
+        "c1": 809,
+        "c2": 663
+      },
+      "expected": [
+        [
+          "cvzd",
+          889.9,
+          "HzvhereA"
+        ],
+        [
+          "XHLGrG",
+          729.3,
+          "FoaeJcbp"
+        ]
+      ]
+    },
+    {
+      "case_id": "015_2",
+      "params": {
+        "cf1": "PeGTFv",
+        "cl1": "eeaEO",
+        "cf2": "TgLDENEd",
+        "cl2": "ShPqPuOG",
+        "rf1": "eAvtOJ",
+        "rl1": "sNonpOT",
+        "rf2": "yNTbsTwU",
+        "rl2": "knaeeFj",
+        "d1": "'2025-09-10'",
+        "d2": "'2025-09-13'",
+        "c1": 874,
+        "c2": 850
+      },
+      "expected": [
+        [
+          "PeGTFv",
+          961.4,
+          "sNonpOT"
+        ],
+        [
+          "TgLDENEd",
+          935.0,
+          "knaeeFj"
+        ]
+      ]
+    },
+    {
+      "case_id": "015_3",
+      "params": {
+        "cf1": "ANSIuIc",
+        "cl1": "wElkY",
+        "cf2": "raUz",
+        "cl2": "DPzFXCf",
+        "rf1": "yMrE",
+        "rl1": "GVxenKaG",
+        "rf2": "UCITB",
+        "rl2": "OWcOdNk",
+        "d1": "'2025-09-10'",
+        "d2": "'2025-09-12'",
+        "c1": 191,
+        "c2": 875
+      },
+      "expected": [
+        [
+          "ANSIuIc",
+          210.1,
+          "GVxenKaG"
+        ],
+        [
+          "raUz",
+          962.5,
+          "OWcOdNk"
+        ]
+      ]
+    },
+    {
+      "case_id": "015_4",
+      "params": {
+        "cf1": "gqBg",
+        "cl1": "OdYzsTM",
+        "cf2": "NUpVXb",
+        "cl2": "sddOxtJ",
+        "rf1": "upAoJFq",
+        "rl1": "ewIU",
+        "rf2": "IlUJIm",
+        "rl2": "cxeI",
+        "d1": "'2025-09-10'",
+        "d2": "'2025-09-12'",
+        "c1": 167,
+        "c2": 198
+      },
+      "expected": [
+        [
+          "gqBg",
+          183.7,
+          "ewIU"
+        ],
+        [
+          "NUpVXb",
+          217.8,
+          "cxeI"
+        ]
+      ]
+    },
+    {
+      "case_id": "015_5",
+      "params": {
+        "cf1": "Bjrza",
+        "cl1": "rZvlI",
+        "cf2": "pNUNb",
+        "cl2": "DYQGULw",
+        "rf1": "OIgjFake",
+        "rl1": "aekil",
+        "rf2": "DvQFVFP",
+        "rl2": "ruLkzCg",
+        "d1": "'2025-09-10'",
+        "d2": "'2025-09-12'",
+        "c1": 392,
+        "c2": 651
+      },
+      "expected": [
+        [
+          "Bjrza",
+          431.2,
+          "aekil"
+        ],
+        [
+          "pNUNb",
+          716.1,
+          "ruLkzCg"
+        ]
+      ]
+    },
+    {
+      "case_id": "015_6",
+      "params": {
+        "cf1": "JtYNFKj",
+        "cl1": "vKCTuG",
+        "cf2": "Jvklj",
+        "cl2": "qtwZ",
+        "rf1": "FEEYFwzn",
+        "rl1": "POcqnwn",
+        "rf2": "PKScmZs",
+        "rl2": "tEErz",
+        "d1": "'2025-09-11'",
+        "d2": "'2025-09-12'",
+        "c1": 822,
+        "c2": 761
+      },
+      "expected": [
+        [
+          "JtYNFKj",
+          904.2,
+          "POcqnwn"
+        ],
+        [
+          "Jvklj",
+          837.1,
+          "tEErz"
+        ]
+      ]
+    },
+    {
+      "case_id": "015_7",
+      "params": {
+        "cf1": "QIPgkUh",
+        "cl1": "rZqc",
+        "cf2": "Ihgur",
+        "cl2": "lJQV",
+        "rf1": "yiyjM",
+        "rl1": "oGaf",
+        "rf2": "DQJCSCNK",
+        "rl2": "HdXgw",
+        "d1": "'2025-09-11'",
+        "d2": "'2025-09-12'",
+        "c1": 342,
+        "c2": 788
+      },
+      "expected": [
+        [
+          "QIPgkUh",
+          376.2,
+          "oGaf"
+        ],
+        [
+          "Ihgur",
+          866.8,
+          "HdXgw"
+        ]
+      ]
+    },
+    {
+      "case_id": "015_8",
+      "params": {
+        "cf1": "UigOp",
+        "cl1": "GFxQwcn",
+        "cf2": "TSEdt",
+        "cl2": "rizGFQVd",
+        "rf1": "WMYu",
+        "rl1": "zSPEUYc",
+        "rf2": "zlpmQv",
+        "rl2": "PNJSSl",
+        "d1": "'2025-09-10'",
+        "d2": "'2025-09-12'",
+        "c1": 731,
+        "c2": 628
+      },
+      "expected": [
+        [
+          "UigOp",
+          804.1,
+          "zSPEUYc"
+        ],
+        [
+          "TSEdt",
+          690.8,
+          "PNJSSl"
+        ]
+      ]
+    },
+    {
+      "case_id": "015_9",
+      "params": {
+        "cf1": "pSHIit",
+        "cl1": "UoTWMVvS",
+        "cf2": "fWUmszXi",
+        "cl2": "BAtP",
+        "rf1": "odABi",
+        "rl1": "acaBHaM",
+        "rf2": "fmWHBYxs",
+        "rl2": "wDVIQ",
+        "d1": "'2025-09-10'",
+        "d2": "'2025-09-13'",
+        "c1": 209,
+        "c2": 313
+      },
+      "expected": [
+        [
+          "pSHIit",
+          229.9,
+          "acaBHaM"
+        ],
+        [
+          "fWUmszXi",
+          344.3,
+          "wDVIQ"
+        ]
+      ]
+    },
+    {
+      "case_id": "015_10",
+      "params": {
+        "cf1": "KUSXfjjD",
+        "cl1": "FeHbeRT",
+        "cf2": "JwGX",
+        "cl2": "UUnVkyMr",
+        "rf1": "tpnbzm",
+        "rl1": "pScib",
+        "rf2": "eJSfG",
+        "rl2": "Ufvn",
+        "d1": "'2025-09-11'",
+        "d2": "'2025-09-13'",
+        "c1": 175,
+        "c2": 803
+      },
+      "expected": [
+        [
+          "KUSXfjjD",
+          192.5,
+          "pScib"
+        ],
+        [
+          "JwGX",
+          883.3,
+          "Ufvn"
+        ]
+      ]
+    },
+    {
+      "case_id": "015_11",
+      "params": {
+        "cf1": "pzxnCH",
+        "cl1": "Prdbq",
+        "cf2": "PRtbEFL",
+        "cl2": "pOtAWmGc",
+        "rf1": "EibZ",
+        "rl1": "Zhfn",
+        "rf2": "SfREXyQR",
+        "rl2": "mGLKM",
+        "d1": "'2025-09-10'",
+        "d2": "'2025-09-12'",
+        "c1": 974,
+        "c2": 733
+      },
+      "expected": [
+        [
+          "pzxnCH",
+          1071.4,
+          "Zhfn"
+        ],
+        [
+          "PRtbEFL",
+          806.3,
+          "mGLKM"
+        ]
+      ]
+    },
+    {
+      "case_id": "015_12",
+      "params": {
+        "cf1": "twAOex",
+        "cl1": "EDleWr",
+        "cf2": "ayvTzupd",
+        "cl2": "JzRkQmy",
+        "rf1": "iUmqNHSi",
+        "rl1": "FREw",
+        "rf2": "Zgpi",
+        "rl2": "BSfz",
+        "d1": "'2025-09-11'",
+        "d2": "'2025-09-13'",
+        "c1": 195,
+        "c2": 871
+      },
+      "expected": [
+        [
+          "twAOex",
+          214.5,
+          "FREw"
+        ],
+        [
+          "ayvTzupd",
+          958.1,
+          "BSfz"
+        ]
+      ]
+    }
+  ]
+}

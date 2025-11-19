@@ -1,0 +1,240 @@
+{
+  "test_id": "013",
+  "description": "Вывести полное имя клиента и фамилию курьера в одной строке в формате 'Фамилия Имя / Фамилия'",
+  "alias": "concat_client_courier",
+  "hardCleanUpAfterTest": false,
+  "order_matters": false,
+  "data_templates": [
+    "INSERT INTO clients(id, first_name,last_name) VALUES (1,{{cf1}},{{cl1}}),(2,{{cf2}},{{cl2}}); INSERT INTO couriers(id, first_name,last_name) VALUES (1,{{rf1}},{{rl1}});"
+  ],
+  "cases": [
+    {
+      "case_id": "013_1",
+      "params": {
+        "cf1": "GPqHfm",
+        "cl1": "KsHcxT",
+        "cf2": "UdGwi",
+        "cl2": "xENrd",
+        "rf1": "OsquFN",
+        "rl1": "WVYmtmzi"
+      },
+      "expected": [
+        [
+          "GPqHfm KsHcxT / WVYmtmzi"
+        ],
+        [
+          "UdGwi xENrd / WVYmtmzi"
+        ]
+      ]
+    },
+    {
+      "case_id": "013_2",
+      "params": {
+        "cf1": "GDnmFp",
+        "cl1": "qwLCpwGv",
+        "cf2": "oBYNSi",
+        "cl2": "iyrF",
+        "rf1": "LNOGhSX",
+        "rl1": "EYTXn"
+      },
+      "expected": [
+        [
+          "GDnmFp qwLCpwGv / EYTXn"
+        ],
+        [
+          "oBYNSi iyrF / EYTXn"
+        ]
+      ]
+    },
+    {
+      "case_id": "013_3",
+      "params": {
+        "cf1": "ACUIEmHV",
+        "cl1": "trRR",
+        "cf2": "kDaxnV",
+        "cl2": "NyedhLZ",
+        "rf1": "woxVYKd",
+        "rl1": "XQASiQR"
+      },
+      "expected": [
+        [
+          "ACUIEmHV trRR / XQASiQR"
+        ],
+        [
+          "kDaxnV NyedhLZ / XQASiQR"
+        ]
+      ]
+    },
+    {
+      "case_id": "013_4",
+      "params": {
+        "cf1": "llMRN",
+        "cl1": "Uerwb",
+        "cf2": "KKjUEcJ",
+        "cl2": "zMDnXGx",
+        "rf1": "nxlEnus",
+        "rl1": "eUSPy"
+      },
+      "expected": [
+        [
+          "llMRN Uerwb / eUSPy"
+        ],
+        [
+          "KKjUEcJ zMDnXGx / eUSPy"
+        ]
+      ]
+    },
+    {
+      "case_id": "013_5",
+      "params": {
+        "cf1": "vpogCn",
+        "cl1": "dfXyANbG",
+        "cf2": "sPcj",
+        "cl2": "ASSct",
+        "rf1": "RaYWcLY",
+        "rl1": "eUhcgmQ"
+      },
+      "expected": [
+        [
+          "vpogCn dfXyANbG / eUhcgmQ"
+        ],
+        [
+          "sPcj ASSct / eUhcgmQ"
+        ]
+      ]
+    },
+    {
+      "case_id": "013_6",
+      "params": {
+        "cf1": "Tcagn",
+        "cl1": "hmVp",
+        "cf2": "CgUj",
+        "cl2": "IAIksem",
+        "rf1": "mtKYE",
+        "rl1": "wHoG"
+      },
+      "expected": [
+        [
+          "Tcagn hmVp / wHoG"
+        ],
+        [
+          "CgUj IAIksem / wHoG"
+        ]
+      ]
+    },
+    {
+      "case_id": "013_7",
+      "params": {
+        "cf1": "BBky",
+        "cl1": "ljEl",
+        "cf2": "WyZRF",
+        "cl2": "UlZqlsD",
+        "rf1": "ZcKq",
+        "rl1": "qggO"
+      },
+      "expected": [
+        [
+          "BBky ljEl / qggO"
+        ],
+        [
+          "WyZRF UlZqlsD / qggO"
+        ]
+      ]
+    },
+    {
+      "case_id": "013_8",
+      "params": {
+        "cf1": "ZrNo",
+        "cl1": "pAAq",
+        "cf2": "juFQjc",
+        "cl2": "GchTK",
+        "rf1": "lLenTJBY",
+        "rl1": "JqRLzn"
+      },
+      "expected": [
+        [
+          "ZrNo pAAq / JqRLzn"
+        ],
+        [
+          "juFQjc GchTK / JqRLzn"
+        ]
+      ]
+    },
+    {
+      "case_id": "013_9",
+      "params": {
+        "cf1": "EsRoQ",
+        "cl1": "FeYEqyNb",
+        "cf2": "uIBbDH",
+        "cl2": "Trwtxn",
+        "rf1": "jbiWbiIk",
+        "rl1": "sjcZvC"
+      },
+      "expected": [
+        [
+          "EsRoQ FeYEqyNb / sjcZvC"
+        ],
+        [
+          "uIBbDH Trwtxn / sjcZvC"
+        ]
+      ]
+    },
+    {
+      "case_id": "013_10",
+      "params": {
+        "cf1": "JMhgD",
+        "cl1": "PhBd",
+        "cf2": "oWXCdt",
+        "cl2": "SywRGs",
+        "rf1": "SSEq",
+        "rl1": "SRulpU"
+      },
+      "expected": [
+        [
+          "JMhgD PhBd / SRulpU"
+        ],
+        [
+          "oWXCdt SywRGs / SRulpU"
+        ]
+      ]
+    },
+    {
+      "case_id": "013_11",
+      "params": {
+        "cf1": "ISHYzmWn",
+        "cl1": "EndpS",
+        "cf2": "FBlxRAd",
+        "cl2": "yYmihye",
+        "rf1": "qYuG",
+        "rl1": "wgtVJOAM"
+      },
+      "expected": [
+        [
+          "ISHYzmWn EndpS / wgtVJOAM"
+        ],
+        [
+          "FBlxRAd yYmihye / wgtVJOAM"
+        ]
+      ]
+    },
+    {
+      "case_id": "013_12",
+      "params": {
+        "cf1": "wcFOioHx",
+        "cl1": "jLVEf",
+        "cf2": "iLZLmv",
+        "cl2": "xxeZM",
+        "rf1": "ipwZzUm",
+        "rl1": "vbwUhN"
+      },
+      "expected": [
+        [
+          "wcFOioHx jLVEf / vbwUhN"
+        ],
+        [
+          "iLZLmv xxeZM / vbwUhN"
+        ]
+      ]
+    }
+  ]
+}

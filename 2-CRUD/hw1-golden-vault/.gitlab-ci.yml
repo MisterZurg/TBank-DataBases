@@ -1,0 +1,25 @@
+stages:
+  - test
+
+variables:
+  POSTGRES_USER: test
+  POSTGRES_PASSWORD: test
+  POSTGRES_DB: testdb
+  POSTGRES_HOST: postgres
+  POSTGRES_PORT: 5432
+
+services:
+  - name: postgres:15
+    alias: postgres
+
+ci_test:
+  stage: test
+  image: ubuntu:22.04
+  before_script:
+    - apt-get update
+    - apt-get install -y python3 python3-pip postgresql-client
+    - pip3 install --no-cache-dir -r requirements.txt
+  script:
+    - echo "Waiting for Postgres to be ready..."
+    - until pg_isready -h $POSTGRES_HOST -p $POSTGRES_PORT -U $POSTGRES_USER; do sleep 1; done
+    - python3 ci_checker.py --cli

@@ -1,0 +1,322 @@
+{
+  "test_id": "010",
+  "description": "Вывести имена клиентов и фамилии курьеров с явным указанием таблицы в запросе",
+  "alias": "select_fields_explicit_table",
+  "hardCleanUpAfterTest": false,
+  "order_matters": false,
+  "data_templates": [
+    "INSERT INTO clients(id, first_name, last_name) VALUES (1, {{cf1}}, {{cl1}}), (2, {{cf2}}, {{cl2}}); INSERT INTO couriers(id, first_name, last_name) VALUES (1, {{rf1}}, {{rl1}}), (2, {{rf2}}, {{rl2}});"
+  ],
+  "cases": [
+    {
+      "case_id": "010_1",
+      "params": {
+        "cf1": "AbCBRtK",
+        "cl1": "kJTDVepI",
+        "cf2": "AEiTID",
+        "cl2": "kcQYKwTj",
+        "rf1": "YpLqobAF",
+        "rl1": "TORRfIc",
+        "rf2": "KTxxCam",
+        "rl2": "sTsfAhtW"
+      },
+      "expected": [
+        [
+          "AbCBRtK",
+          "TORRfIc"
+        ],
+        [
+          "AbCBRtK",
+          "sTsfAhtW"
+        ],
+        [
+          "AEiTID",
+          "TORRfIc"
+        ],
+        [
+          "AEiTID",
+          "sTsfAhtW"
+        ]
+      ]
+    },
+    {
+      "case_id": "010_2",
+      "params": {
+        "cf1": "SGRyJkdS",
+        "cl1": "yEqr",
+        "cf2": "cDwBFWPE",
+        "cl2": "VnBSsHS",
+        "rf1": "YRHYyWmN",
+        "rl1": "SzRZcTuF",
+        "rf2": "OcQbgV",
+        "rl2": "VuliQudN"
+      },
+      "expected": [
+        [
+          "SGRyJkdS",
+          "SzRZcTuF"
+        ],
+        [
+          "SGRyJkdS",
+          "VuliQudN"
+        ],
+        [
+          "cDwBFWPE",
+          "SzRZcTuF"
+        ],
+        [
+          "cDwBFWPE",
+          "VuliQudN"
+        ]
+      ]
+    },
+    {
+      "case_id": "010_3",
+      "params": {
+        "cf1": "UyxpVIE",
+        "cl1": "cogIKz",
+        "cf2": "duLjSoEr",
+        "cl2": "LqPshK",
+        "rf1": "UCgrVpQ",
+        "rl1": "DSIWoh",
+        "rf2": "xCodkB",
+        "rl2": "YKMoztQ"
+      },
+      "expected": [
+        [
+          "UyxpVIE",
+          "DSIWoh"
+        ],
+        [
+          "UyxpVIE",
+          "YKMoztQ"
+        ],
+        [
+          "duLjSoEr",
+          "DSIWoh"
+        ],
+        [
+          "duLjSoEr",
+          "YKMoztQ"
+        ]
+      ]
+    },
+    {
+      "case_id": "010_4",
+      "params": {
+        "cf1": "qrpsamN",
+        "cl1": "zMTURXH",
+        "cf2": "DzMMbY",
+        "cl2": "wKtJUFK",
+        "rf1": "bCgQ",
+        "rl1": "swOC",
+        "rf2": "atqZ",
+        "rl2": "RMuqyRGU"
+      },
+      "expected": [
+        [
+          "qrpsamN",
+          "swOC"
+        ],
+        [
+          "qrpsamN",
+          "RMuqyRGU"
+        ],
+        [
+          "DzMMbY",
+          "swOC"
+        ],
+        [
+          "DzMMbY",
+          "RMuqyRGU"
+        ]
+      ]
+    },
+    {
+      "case_id": "010_5",
+      "params": {
+        "cf1": "LCjqPW",
+        "cl1": "xJxYaESB",
+        "cf2": "loec",
+        "cl2": "niFYMqox",
+        "rf1": "ifbu",
+        "rl1": "SCHaoggr",
+        "rf2": "jUoVUsP",
+        "rl2": "CpoMy"
+      },
+      "expected": [
+        [
+          "LCjqPW",
+          "SCHaoggr"
+        ],
+        [
+          "LCjqPW",
+          "CpoMy"
+        ],
+        [
+          "loec",
+          "SCHaoggr"
+        ],
+        [
+          "loec",
+          "CpoMy"
+        ]
+      ]
+    },
+    {
+      "case_id": "010_6",
+      "params": {
+        "cf1": "WKCAjswC",
+        "cl1": "dTaFjLJ",
+        "cf2": "zlEtdNQB",
+        "cl2": "xUbbKsG",
+        "rf1": "QovUaXgf",
+        "rl1": "JtZzq",
+        "rf2": "oXkQ",
+        "rl2": "hfLR"
+      },
+      "expected": [
+        [
+          "WKCAjswC",
+          "JtZzq"
+        ],
+        [
+          "WKCAjswC",
+          "hfLR"
+        ],
+        [
+          "zlEtdNQB",
+          "JtZzq"
+        ],
+        [
+          "zlEtdNQB",
+          "hfLR"
+        ]
+      ]
+    },
+    {
+      "case_id": "010_7",
+      "params": {
+        "cf1": "uDtJm",
+        "cl1": "AeuPQMT",
+        "cf2": "sPFyxIHd",
+        "cl2": "msBZu",
+        "rf1": "vSDUe",
+        "rl1": "qkjnRQ",
+        "rf2": "PmmFNxz",
+        "rl2": "eoIFfUgY"
+      },
+      "expected": [
+        [
+          "uDtJm",
+          "qkjnRQ"
+        ],
+        [
+          "uDtJm",
+          "eoIFfUgY"
+        ],
+        [
+          "sPFyxIHd",
+          "qkjnRQ"
+        ],
+        [
+          "sPFyxIHd",
+          "eoIFfUgY"
+        ]
+      ]
+    },
+    {
+      "case_id": "010_8",
+      "params": {
+        "cf1": "aTZJCEBT",
+        "cl1": "DOgnQU",
+        "cf2": "eZXTTwbK",
+        "cl2": "jlSE",
+        "rf1": "BSKGbmY",
+        "rl1": "mLWF",
+        "rf2": "caAl",
+        "rl2": "mogDZuTX"
+      },
+      "expected": [
+        [
+          "aTZJCEBT",
+          "mLWF"
+        ],
+        [
+          "aTZJCEBT",
+          "mogDZuTX"
+        ],
+        [
+          "eZXTTwbK",
+          "mLWF"
+        ],
+        [
+          "eZXTTwbK",
+          "mogDZuTX"
+        ]
+      ]
+    },
+    {
+      "case_id": "010_9",
+      "params": {
+        "cf1": "iesQ",
+        "cl1": "zQGbyZ",
+        "cf2": "ckAdf",
+        "cl2": "ZfwzNVgA",
+        "rf1": "kGIBgYj",
+        "rl1": "GPLcy",
+        "rf2": "fUlTQeig",
+        "rl2": "TOHw"
+      },
+      "expected": [
+        [
+          "iesQ",
+          "GPLcy"
+        ],
+        [
+          "iesQ",
+          "TOHw"
+        ],
+        [
+          "ckAdf",
+          "GPLcy"
+        ],
+        [
+          "ckAdf",
+          "TOHw"
+        ]
+      ]
+    },
+    {
+      "case_id": "010_10",
+      "params": {
+        "cf1": "WnPzNq",
+        "cl1": "YKxzKpKm",
+        "cf2": "mOzc",
+        "cl2": "jTdF",
+        "rf1": "uQagHebt",
+        "rl1": "rFGijOCo",
+        "rf2": "YoLDQ",
+        "rl2": "BGiVynr"
+      },
+      "expected": [
+        [
+          "WnPzNq",
+          "rFGijOCo"
+        ],
+        [
+          "WnPzNq",
+          "BGiVynr"
+        ],
+        [
+          "mOzc",
+          "rFGijOCo"
+        ],
+        [
+          "mOzc",
+          "BGiVynr"
+        ]
+      ]
+    }
+  ]
+}

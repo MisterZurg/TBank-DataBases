@@ -1,0 +1,63 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: sql_test_db
+    restart: always
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: testdb
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U test -d testdb" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - sql_test_net
+
+  backend:
+    image: minusd/forgedl-checker:1.0.0
+    container_name: forgedl_backend
+    restart: always
+    environment:
+      DB_NAME: testdb
+      DB_USER: test
+      DB_PASSWORD: test
+      DB_HOST: postgres
+      DB_PORT: 5432
+      PORT: 5001
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./student_solutions:/app/student_solutions
+      - ./tests.json:/app/tests.json
+    networks:
+      - sql_test_net
+
+  frontend:
+    image: minusd/forgedl-ui:1.0.0
+    container_name: forgedl_frontend
+    restart: always
+    environment:
+      REACT_APP_API_BASE: "http://backend:5001"
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - sql_test_net
+
+networks:
+  sql_test_net:
+    #    external: true # Раскомментировать, если ошибка, что сеть уже существует
+    name: sql_test_net
+    driver: bridge
+
+

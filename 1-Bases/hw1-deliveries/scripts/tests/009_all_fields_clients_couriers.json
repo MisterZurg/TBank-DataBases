@@ -1,0 +1,482 @@
+{
+  "test_id": "009",
+  "description": "Вывести все поля клиентов и курьеров",
+  "alias": "all_fields_clients_couriers",
+  "hardCleanUpAfterTest": false,
+  "order_matters": false,
+  "data_templates": [
+    "INSERT INTO clients(id, first_name, last_name) VALUES (1, {{cf1}}, {{cl1}}), (2, {{cf2}}, {{cl2}}); INSERT INTO couriers(id, first_name, last_name) VALUES (1, {{rf1}}, {{rl1}}), (2, {{rf2}}, {{rl2}});"
+  ],
+  "cases": [
+    {
+      "case_id": "009_1",
+      "params": {
+        "cf1": "aTTqF",
+        "cl1": "LJNgVtsw",
+        "cf2": "pbyJUK",
+        "cl2": "hzrY",
+        "rf1": "HehKwj",
+        "rl1": "Lspm",
+        "rf2": "ANUDC",
+        "rl2": "Rvossk"
+      },
+      "expected": [
+        [
+          1,
+          "aTTqF",
+          "LJNgVtsw",
+          1,
+          "HehKwj",
+          "Lspm"
+        ],
+        [
+          1,
+          "aTTqF",
+          "LJNgVtsw",
+          2,
+          "ANUDC",
+          "Rvossk"
+        ],
+        [
+          2,
+          "pbyJUK",
+          "hzrY",
+          1,
+          "HehKwj",
+          "Lspm"
+        ],
+        [
+          2,
+          "pbyJUK",
+          "hzrY",
+          2,
+          "ANUDC",
+          "Rvossk"
+        ]
+      ]
+    },
+    {
+      "case_id": "009_2",
+      "params": {
+        "cf1": "aDVOLTs",
+        "cl1": "HhLt",
+        "cf2": "BPDjPS",
+        "cl2": "edYdF",
+        "rf1": "FAAdRKX",
+        "rl1": "bXWOBCFI",
+        "rf2": "mhLx",
+        "rl2": "TqAloCV"
+      },
+      "expected": [
+        [
+          1,
+          "aDVOLTs",
+          "HhLt",
+          1,
+          "FAAdRKX",
+          "bXWOBCFI"
+        ],
+        [
+          1,
+          "aDVOLTs",
+          "HhLt",
+          2,
+          "mhLx",
+          "TqAloCV"
+        ],
+        [
+          2,
+          "BPDjPS",
+          "edYdF",
+          1,
+          "FAAdRKX",
+          "bXWOBCFI"
+        ],
+        [
+          2,
+          "BPDjPS",
+          "edYdF",
+          2,
+          "mhLx",
+          "TqAloCV"
+        ]
+      ]
+    },
+    {
+      "case_id": "009_3",
+      "params": {
+        "cf1": "tnuPiy",
+        "cl1": "QHclW",
+        "cf2": "fLfNlK",
+        "cl2": "JrEXnc",
+        "rf1": "CjcZ",
+        "rl1": "xJqHR",
+        "rf2": "RPcli",
+        "rl2": "kHzGOsMT"
+      },
+      "expected": [
+        [
+          1,
+          "tnuPiy",
+          "QHclW",
+          1,
+          "CjcZ",
+          "xJqHR"
+        ],
+        [
+          1,
+          "tnuPiy",
+          "QHclW",
+          2,
+          "RPcli",
+          "kHzGOsMT"
+        ],
+        [
+          2,
+          "fLfNlK",
+          "JrEXnc",
+          1,
+          "CjcZ",
+          "xJqHR"
+        ],
+        [
+          2,
+          "fLfNlK",
+          "JrEXnc",
+          2,
+          "RPcli",
+          "kHzGOsMT"
+        ]
+      ]
+    },
+    {
+      "case_id": "009_4",
+      "params": {
+        "cf1": "ORqI",
+        "cl1": "dIVrbYiW",
+        "cf2": "zJFxcMin",
+        "cl2": "rsBPlm",
+        "rf1": "AHJvKEm",
+        "rl1": "WdotXy",
+        "rf2": "NuyOSoPV",
+        "rl2": "gUSLTe"
+      },
+      "expected": [
+        [
+          1,
+          "ORqI",
+          "dIVrbYiW",
+          1,
+          "AHJvKEm",
+          "WdotXy"
+        ],
+        [
+          1,
+          "ORqI",
+          "dIVrbYiW",
+          2,
+          "NuyOSoPV",
+          "gUSLTe"
+        ],
+        [
+          2,
+          "zJFxcMin",
+          "rsBPlm",
+          1,
+          "AHJvKEm",
+          "WdotXy"
+        ],
+        [
+          2,
+          "zJFxcMin",
+          "rsBPlm",
+          2,
+          "NuyOSoPV",
+          "gUSLTe"
+        ]
+      ]
+    },
+    {
+      "case_id": "009_5",
+      "params": {
+        "cf1": "kWLIXa",
+        "cl1": "ygGD",
+        "cf2": "UJwveoc",
+        "cl2": "yXZKh",
+        "rf1": "BWbm",
+        "rl1": "QENed",
+        "rf2": "TOHVH",
+        "rl2": "Gczbq"
+      },
+      "expected": [
+        [
+          1,
+          "kWLIXa",
+          "ygGD",
+          1,
+          "BWbm",
+          "QENed"
+        ],
+        [
+          1,
+          "kWLIXa",
+          "ygGD",
+          2,
+          "TOHVH",
+          "Gczbq"
+        ],
+        [
+          2,
+          "UJwveoc",
+          "yXZKh",
+          1,
+          "BWbm",
+          "QENed"
+        ],
+        [
+          2,
+          "UJwveoc",
+          "yXZKh",
+          2,
+          "TOHVH",
+          "Gczbq"
+        ]
+      ]
+    },
+    {
+      "case_id": "009_6",
+      "params": {
+        "cf1": "BYssDZpL",
+        "cl1": "XoUIRaRS",
+        "cf2": "jnRWef",
+        "cl2": "eDDsN",
+        "rf1": "qpZfsT",
+        "rl1": "DdAWPZ",
+        "rf2": "SGpOsME",
+        "rl2": "HAomR"
+      },
+      "expected": [
+        [
+          1,
+          "BYssDZpL",
+          "XoUIRaRS",
+          1,
+          "qpZfsT",
+          "DdAWPZ"
+        ],
+        [
+          1,
+          "BYssDZpL",
+          "XoUIRaRS",
+          2,
+          "SGpOsME",
+          "HAomR"
+        ],
+        [
+          2,
+          "jnRWef",
+          "eDDsN",
+          1,
+          "qpZfsT",
+          "DdAWPZ"
+        ],
+        [
+          2,
+          "jnRWef",
+          "eDDsN",
+          2,
+          "SGpOsME",
+          "HAomR"
+        ]
+      ]
+    },
+    {
+      "case_id": "009_7",
+      "params": {
+        "cf1": "MVre",
+        "cl1": "wZmXS",
+        "cf2": "nfBBcWkg",
+        "cl2": "uSWU",
+        "rf1": "avAGGdSW",
+        "rl1": "CNGhQcS",
+        "rf2": "YmBv",
+        "rl2": "sTIob"
+      },
+      "expected": [
+        [
+          1,
+          "MVre",
+          "wZmXS",
+          1,
+          "avAGGdSW",
+          "CNGhQcS"
+        ],
+        [
+          1,
+          "MVre",
+          "wZmXS",
+          2,
+          "YmBv",
+          "sTIob"
+        ],
+        [
+          2,
+          "nfBBcWkg",
+          "uSWU",
+          1,
+          "avAGGdSW",
+          "CNGhQcS"
+        ],
+        [
+          2,
+          "nfBBcWkg",
+          "uSWU",
+          2,
+          "YmBv",
+          "sTIob"
+        ]
+      ]
+    },
+    {
+      "case_id": "009_8",
+      "params": {
+        "cf1": "TrbjJO",
+        "cl1": "GYMFZQb",
+        "cf2": "eIaww",
+        "cl2": "YVyqIn",
+        "rf1": "KPsg",
+        "rl1": "MvVkiFeu",
+        "rf2": "EsjCjs",
+        "rl2": "EcCjN"
+      },
+      "expected": [
+        [
+          1,
+          "TrbjJO",
+          "GYMFZQb",
+          1,
+          "KPsg",
+          "MvVkiFeu"
+        ],
+        [
+          1,
+          "TrbjJO",
+          "GYMFZQb",
+          2,
+          "EsjCjs",
+          "EcCjN"
+        ],
+        [
+          2,
+          "eIaww",
+          "YVyqIn",
+          1,
+          "KPsg",
+          "MvVkiFeu"
+        ],
+        [
+          2,
+          "eIaww",
+          "YVyqIn",
+          2,
+          "EsjCjs",
+          "EcCjN"
+        ]
+      ]
+    },
+    {
+      "case_id": "009_9",
+      "params": {
+        "cf1": "YlNPTwK",
+        "cl1": "gYmQ",
+        "cf2": "maaGyC",
+        "cl2": "gFBOQuks",
+        "rf1": "ZRIzLP",
+        "rl1": "XeJTnSak",
+        "rf2": "QpYxMVGV",
+        "rl2": "iSInDZh"
+      },
+      "expected": [
+        [
+          1,
+          "YlNPTwK",
+          "gYmQ",
+          1,
+          "ZRIzLP",
+          "XeJTnSak"
+        ],
+        [
+          1,
+          "YlNPTwK",
+          "gYmQ",
+          2,
+          "QpYxMVGV",
+          "iSInDZh"
+        ],
+        [
+          2,
+          "maaGyC",
+          "gFBOQuks",
+          1,
+          "ZRIzLP",
+          "XeJTnSak"
+        ],
+        [
+          2,
+          "maaGyC",
+          "gFBOQuks",
+          2,
+          "QpYxMVGV",
+          "iSInDZh"
+        ]
+      ]
+    },
+    {
+      "case_id": "009_10",
+      "params": {
+        "cf1": "vzUw",
+        "cl1": "vWkjpsHN",
+        "cf2": "UvAIBr",
+        "cl2": "YXMn",
+        "rf1": "DDwU",
+        "rl1": "eJEvoL",
+        "rf2": "lEWiz",
+        "rl2": "GVVG"
+      },
+      "expected": [
+        [
+          1,
+          "vzUw",
+          "vWkjpsHN",
+          1,
+          "DDwU",
+          "eJEvoL"
+        ],
+        [
+          1,
+          "vzUw",
+          "vWkjpsHN",
+          2,
+          "lEWiz",
+          "GVVG"
+        ],
+        [
+          2,
+          "UvAIBr",
+          "YXMn",
+          1,
+          "DDwU",
+          "eJEvoL"
+        ],
+        [
+          2,
+          "UvAIBr",
+          "YXMn",
+          2,
+          "lEWiz",
+          "GVVG"
+        ]
+      ]
+    }
+  ]
+}

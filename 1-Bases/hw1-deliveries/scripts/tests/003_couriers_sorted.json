@@ -1,0 +1,262 @@
+{
+  "test_id": "003",
+  "description": "Вывести всех курьеров, отсортировав по фамилии",
+  "alias": "couriers_sorted",
+  "hardCleanUpAfterTest": false,
+  "order_matters": true,
+  "data_templates": [
+    "INSERT INTO couriers(id, first_name, last_name) VALUES (1, {{f1}}, {{l1}}), (2, {{f2}}, {{l2}}), (3, {{f3}}, {{l3}});"
+  ],
+  "cases": [
+    {
+      "case_id": "003_1",
+      "params": {
+        "f1": "rAGfsuN",
+        "l1": "RPBfI",
+        "f2": "PZTqWuu",
+        "l2": "QLBBu",
+        "f3": "mSYg",
+        "l3": "WhtzaRAL"
+      },
+      "expected": [
+        [
+          "PZTqWuu",
+          "QLBBu"
+        ],
+        [
+          "rAGfsuN",
+          "RPBfI"
+        ],
+        [
+          "mSYg",
+          "WhtzaRAL"
+        ]
+      ]
+    },
+    {
+      "case_id": "003_2",
+      "params": {
+        "f1": "SAiG",
+        "l1": "krPd",
+        "f2": "aPRhGde",
+        "l2": "jOyJsu",
+        "f3": "AsbQ",
+        "l3": "ZxOpWzP"
+      },
+      "expected": [
+        [
+          "aPRhGde",
+          "jOyJsu"
+        ],
+        [
+          "SAiG",
+          "krPd"
+        ],
+        [
+          "AsbQ",
+          "ZxOpWzP"
+        ]
+      ]
+    },
+    {
+      "case_id": "003_3",
+      "params": {
+        "f1": "vCTG",
+        "l1": "elTXbjm",
+        "f2": "Zujapd",
+        "l2": "TbZI",
+        "f3": "QPqBsk",
+        "l3": "pSYKaNpz"
+      },
+      "expected": [
+        [
+          "vCTG",
+          "elTXbjm"
+        ],
+        [
+          "QPqBsk",
+          "pSYKaNpz"
+        ],
+        [
+          "Zujapd",
+          "TbZI"
+        ]
+      ]
+    },
+    {
+      "case_id": "003_4",
+      "params": {
+        "f1": "LqyRy",
+        "l1": "wuMSe",
+        "f2": "DlmBLmtV",
+        "l2": "RngTWqU",
+        "f3": "juavgip",
+        "l3": "zKzwsVTv"
+      },
+      "expected": [
+        [
+          "DlmBLmtV",
+          "RngTWqU"
+        ],
+        [
+          "LqyRy",
+          "wuMSe"
+        ],
+        [
+          "juavgip",
+          "zKzwsVTv"
+        ]
+      ]
+    },
+    {
+      "case_id": "003_5",
+      "params": {
+        "f1": "SSRuXqvU",
+        "l1": "LNGmKFH",
+        "f2": "ZfpBoBO",
+        "l2": "XPJf",
+        "f3": "VMKUMQK",
+        "l3": "LYLlrNk"
+      },
+      "expected": [
+        [
+          "SSRuXqvU",
+          "LNGmKFH"
+        ],
+        [
+          "VMKUMQK",
+          "LYLlrNk"
+        ],
+        [
+          "ZfpBoBO",
+          "XPJf"
+        ]
+      ]
+    },
+    {
+      "case_id": "003_6",
+      "params": {
+        "f1": "JERWBa",
+        "l1": "DCuEJp",
+        "f2": "RZylfZVf",
+        "l2": "hUwxDeM",
+        "f3": "wZbkHAGR",
+        "l3": "ruvbJlxC"
+      },
+      "expected": [
+        [
+          "JERWBa",
+          "DCuEJp"
+        ],
+        [
+          "RZylfZVf",
+          "hUwxDeM"
+        ],
+        [
+          "wZbkHAGR",
+          "ruvbJlxC"
+        ]
+      ]
+    },
+    {
+      "case_id": "003_7",
+      "params": {
+        "f1": "iUKrTe",
+        "l1": "KbOfjhny",
+        "f2": "ROEhnlx",
+        "l2": "xKbp",
+        "f3": "EdvnOx",
+        "l3": "NJTWuxPV"
+      },
+      "expected": [
+        [
+          "iUKrTe",
+          "KbOfjhny"
+        ],
+        [
+          "EdvnOx",
+          "NJTWuxPV"
+        ],
+        [
+          "ROEhnlx",
+          "xKbp"
+        ]
+      ]
+    },
+    {
+      "case_id": "003_8",
+      "params": {
+        "f1": "QbQu",
+        "l1": "YFzG",
+        "f2": "lVWhP",
+        "l2": "ndBtwv",
+        "f3": "dYZky",
+        "l3": "aQcZx"
+      },
+      "expected": [
+        [
+          "dYZky",
+          "aQcZx"
+        ],
+        [
+          "lVWhP",
+          "ndBtwv"
+        ],
+        [
+          "QbQu",
+          "YFzG"
+        ]
+      ]
+    },
+    {
+      "case_id": "003_9",
+      "params": {
+        "f1": "iklMroMx",
+        "l1": "gxjcgVR",
+        "f2": "HMZSd",
+        "l2": "hYXOvh",
+        "f3": "FVEZnKwP",
+        "l3": "GrRPh"
+      },
+      "expected": [
+        [
+          "FVEZnKwP",
+          "GrRPh"
+        ],
+        [
+          "iklMroMx",
+          "gxjcgVR"
+        ],
+        [
+          "HMZSd",
+          "hYXOvh"
+        ]
+      ]
+    },
+    {
+      "case_id": "003_10",
+      "params": {
+        "f1": "QlQZiCt",
+        "l1": "spZQ",
+        "f2": "SMiHtD",
+        "l2": "wypJjZSI",
+        "f3": "zgWvJJO",
+        "l3": "TIMB"
+      },
+      "expected": [
+        [
+          "QlQZiCt",
+          "spZQ"
+        ],
+        [
+          "zgWvJJO",
+          "TIMB"
+        ],
+        [
+          "SMiHtD",
+          "wypJjZSI"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "test_id": "006",
+  "description": "Вывести имена клиентов и стоимость их доставок с наценкой 10% (поле new_cost)",
+  "alias": "delivery_cost_bonus",
+  "hardCleanUpAfterTest": true,
+  "order_matters": false,
+  "data_templates": [
+    "INSERT INTO clients(id, first_name,last_name) VALUES (1, {{cf1}},{{cl1}}),(2, {{cf2}},{{cl2}}); INSERT INTO couriers(id, first_name,last_name) VALUES (1, {{rf1}},{{rl1}}); INSERT INTO deliveries(id, client_id,courier_id,delivery_date,delivery_cost) VALUES (1,1,1,{{d1}},{{c1}}),(2,2,1,{{d2}},{{c2}});"
+  ],
+  "cases": [
+    {
+      "case_id": "006_1",
+      "params": {
+        "cf1": "UGccl",
+        "cl1": "oxnb",
+        "cf2": "XJQHN",
+        "cl2": "yAnxO",
+        "rf1": "pVAkLwn",
+        "rl1": "uCqUX",
+        "d1": "'2025-09-10'",
+        "d2": "'2025-09-12'",
+        "c1": 421,
+        "c2": 785
+      },
+      "expected": [
+        [
+          "UGccl",
+          463.1
+        ],
+        [
+          "XJQHN",
+          863.5
+        ]
+      ]
+    },
+    {
+      "case_id": "006_2",
+      "params": {
+        "cf1": "ZgUBuK",
+        "cl1": "MzqShqxS",
+        "cf2": "HmWbHTwQ",
+        "cl2": "LNsy",
+        "rf1": "mNSZzm",
+        "rl1": "JDVnEmSu",
+        "d1": "'2025-09-10'",
+        "d2": "'2025-09-13'",
+        "c1": 539,
+        "c2": 439
+      },
+      "expected": [
+        [
+          "ZgUBuK",
+          592.9
+        ],
+        [
+          "HmWbHTwQ",
+          482.9
+        ]
+      ]
+    },
+    {
+      "case_id": "006_3",
+      "params": {
+        "cf1": "hVDLt",
+        "cl1": "quzrSRK",
+        "cf2": "YtsvQU",
+        "cl2": "TuKSu",
+        "rf1": "QiWCC",
+        "rl1": "XsOvnUVw",
+        "d1": "'2025-09-10'",
+        "d2": "'2025-09-12'",
+        "c1": 800,
+        "c2": 799
+      },
+      "expected": [
+        [
+          "hVDLt",
+          880.0
+        ],
+        [
+          "YtsvQU",
+          878.9
+        ]
+      ]
+    },
+    {
+      "case_id": "006_4",
+      "params": {
+        "cf1": "GftAb",
+        "cl1": "lxwFb",
+        "cf2": "FwLks",
+        "cl2": "naOXU",
+        "rf1": "OgXeMi",
+        "rl1": "lbee",
+        "d1": "'2025-09-11'",
+        "d2": "'2025-09-12'",
+        "c1": 636,
+        "c2": 721
+      },
+      "expected": [
+        [
+          "GftAb",
+          699.6
+        ],
+        [
+          "FwLks",
+          793.1
+        ]
+      ]
+    },
+    {
+      "case_id": "006_5",
+      "params": {
+        "cf1": "AozHzyuY",
+        "cl1": "cFgDEczn",
+        "cf2": "LrrPsIh",
+        "cl2": "tHjQhbD",
+        "rf1": "WsYtfo",
+        "rl1": "PRVdTx",
+        "d1": "'2025-09-11'",
+        "d2": "'2025-09-12'",
+        "c1": 635,
+        "c2": 703
+      },
+      "expected": [
+        [
+          "AozHzyuY",
+          698.5
+        ],
+        [
+          "LrrPsIh",
+          773.3
+        ]
+      ]
+    },
+    {
+      "case_id": "006_6",
+      "params": {
+        "cf1": "QLoo",
+        "cl1": "zvYiurAS",
+        "cf2": "tRuDGXvQ",
+        "cl2": "CwOUCJz",
+        "rf1": "FRiOXG",
+        "rl1": "qKPV",
+        "d1": "'2025-09-11'",
+        "d2": "'2025-09-13'",
+        "c1": 442,
+        "c2": 635
+      },
+      "expected": [
+        [
+          "QLoo",
+          486.2
+        ],
+        [
+          "tRuDGXvQ",
+          698.5
+        ]
+      ]
+    },
+    {
+      "case_id": "006_7",
+      "params": {
+        "cf1": "XqnGVLdG",
+        "cl1": "hBBhnfTI",
+        "cf2": "vJUOjDiZ",
+        "cl2": "YWUtpBHs",
+        "rf1": "IjkUUe",
+        "rl1": "eUTkeiS",
+        "d1": "'2025-09-11'",
+        "d2": "'2025-09-13'",
+        "c1": 622,
+        "c2": 469
+      },
+      "expected": [
+        [
+          "XqnGVLdG",
+          684.2
+        ],
+        [
+          "vJUOjDiZ",
+          515.9
+        ]
+      ]
+    },
+    {
+      "case_id": "006_8",
+      "params": {
+        "cf1": "ZiprodTq",
+        "cl1": "LqOZSuQz",
+        "cf2": "kAtzOOPZ",
+        "cl2": "lKjK",
+        "rf1": "ufsSv",
+        "rl1": "jExPNZ",
+        "d1": "'2025-09-10'",
+        "d2": "'2025-09-13'",
+        "c1": 704,
+        "c2": 647
+      },
+      "expected": [
+        [
+          "ZiprodTq",
+          774.4
+        ],
+        [
+          "kAtzOOPZ",
+          711.7
+        ]
+      ]
+    },
+    {
+      "case_id": "006_9",
+      "params": {
+        "cf1": "HVrpZlLH",
+        "cl1": "sRpW",
+        "cf2": "IlEt",
+        "cl2": "NQaOnz",
+        "rf1": "CNkeFK",
+        "rl1": "ioLtq",
+        "d1": "'2025-09-10'",
+        "d2": "'2025-09-12'",
+        "c1": 673,
+        "c2": 610
+      },
+      "expected": [
+        [
+          "HVrpZlLH",
+          740.3
+        ],
+        [
+          "IlEt",
+          671.0
+        ]
+      ]
+    },
+    {
+      "case_id": "006_10",
+      "params": {
+        "cf1": "STAIrg",
+        "cl1": "TlEEbpZM",
+        "cf2": "EFbd",
+        "cl2": "rYLbIc",
+        "rf1": "JJrkNUAs",
+        "rl1": "YtPlMSvC",
+        "d1": "'2025-09-10'",
+        "d2": "'2025-09-13'",
+        "c1": 594,
+        "c2": 718
+      },
+      "expected": [
+        [
+          "STAIrg",
+          653.4
+        ],
+        [
+          "EFbd",
+          789.8
+        ]
+      ]
+    },
+    {
+      "case_id": "006_11",
+      "params": {
+        "cf1": "SwwP",
+        "cl1": "ajaAUMLj",
+        "cf2": "vyUO",
+        "cl2": "mJhqT",
+        "rf1": "Ckuf",
+        "rl1": "qwUu",
+        "d1": "'2025-09-10'",
+        "d2": "'2025-09-12'",
+        "c1": 565,
+        "c2": 703
+      },
+      "expected": [
+        [
+          "SwwP",
+          621.5
+        ],
+        [
+          "vyUO",
+          773.3
+        ]
+      ]
+    },
+    {
+      "case_id": "006_12",
+      "params": {
+        "cf1": "lwfpW",
+        "cl1": "rodvu",
+        "cf2": "svaXKIG",
+        "cl2": "UeXe",
+        "rf1": "faji",
+        "rl1": "ovkvT",
+        "d1": "'2025-09-11'",
+        "d2": "'2025-09-13'",
+        "c1": 495,
+        "c2": 472
+      },
+      "expected": [
+        [
+          "lwfpW",
+          544.5
+        ],
+        [
+          "svaXKIG",
+          519.2
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "test_id": "004",
+  "description": "Вывести первые три клиента по порядку id",
+  "alias": "limit_clients",
+  "hardCleanUpAfterTest": false,
+  "order_matters": true,
+  "data_templates": [
+    "INSERT INTO clients(id, first_name, last_name) VALUES (1, {{f1}}, {{l1}}), (2, {{f2}}, {{l2}}), (3, {{f3}}, {{l3}}), (4, {{f4}}, {{l4}});"
+  ],
+  "cases": [
+    {
+      "case_id": "004_1",
+      "params": {
+        "f1": "oqIYal",
+        "l1": "BDsU",
+        "f2": "uzmYLOH",
+        "l2": "yLUl",
+        "f3": "qDXetRa",
+        "l3": "AJbmvkZC",
+        "f4": "cDQO",
+        "l4": "NBLM"
+      },
+      "expected": [
+        [
+          "oqIYal",
+          "BDsU"
+        ],
+        [
+          "uzmYLOH",
+          "yLUl"
+        ],
+        [
+          "qDXetRa",
+          "AJbmvkZC"
+        ]
+      ]
+    },
+    {
+      "case_id": "004_2",
+      "params": {
+        "f1": "nJVNxEVR",
+        "l1": "LLztpz",
+        "f2": "voLdtZ",
+        "l2": "GdVz",
+        "f3": "xdiQSY",
+        "l3": "QeOI",
+        "f4": "rTBhje",
+        "l4": "OgMWJpcS"
+      },
+      "expected": [
+        [
+          "nJVNxEVR",
+          "LLztpz"
+        ],
+        [
+          "voLdtZ",
+          "GdVz"
+        ],
+        [
+          "xdiQSY",
+          "QeOI"
+        ]
+      ]
+    },
+    {
+      "case_id": "004_3",
+      "params": {
+        "f1": "JKyScj",
+        "l1": "RkAMzM",
+        "f2": "sbvrLSb",
+        "l2": "UcAvoI",
+        "f3": "Emoh",
+        "l3": "vULMyg",
+        "f4": "IrycJaW",
+        "l4": "GrTvau"
+      },
+      "expected": [
+        [
+          "JKyScj",
+          "RkAMzM"
+        ],
+        [
+          "sbvrLSb",
+          "UcAvoI"
+        ],
+        [
+          "Emoh",
+          "vULMyg"
+        ]
+      ]
+    },
+    {
+      "case_id": "004_4",
+      "params": {
+        "f1": "ltcocunN",
+        "l1": "hMLcyEgo",
+        "f2": "jiUr",
+        "l2": "cZwTA",
+        "f3": "rqxz",
+        "l3": "SIpG",
+        "f4": "EtBUJjPS",
+        "l4": "Wodm"
+      },
+      "expected": [
+        [
+          "ltcocunN",
+          "hMLcyEgo"
+        ],
+        [
+          "jiUr",
+          "cZwTA"
+        ],
+        [
+          "rqxz",
+          "SIpG"
+        ]
+      ]
+    },
+    {
+      "case_id": "004_5",
+      "params": {
+        "f1": "HNgiXM",
+        "l1": "NzctetB",
+        "f2": "glBYsv",
+        "l2": "tJBJTaW",
+        "f3": "TWSuKCck",
+        "l3": "xQOiD",
+        "f4": "zztEjDeD",
+        "l4": "BORwUh"
+      },
+      "expected": [
+        [
+          "HNgiXM",
+          "NzctetB"
+        ],
+        [
+          "glBYsv",
+          "tJBJTaW"
+        ],
+        [
+          "TWSuKCck",
+          "xQOiD"
+        ]
+      ]
+    },
+    {
+      "case_id": "004_6",
+      "params": {
+        "f1": "YezN",
+        "l1": "fByH",
+        "f2": "PlTlOr",
+        "l2": "zuDZ",
+        "f3": "OMcX",
+        "l3": "KBJRaY",
+        "f4": "rYtPa",
+        "l4": "QLGE"
+      },
+      "expected": [
+        [
+          "YezN",
+          "fByH"
+        ],
+        [
+          "PlTlOr",
+          "zuDZ"
+        ],
+        [
+          "OMcX",
+          "KBJRaY"
+        ]
+      ]
+    },
+    {
+      "case_id": "004_7",
+      "params": {
+        "f1": "UlHRnnk",
+        "l1": "BSIHiI",
+        "f2": "MAZIP",
+        "l2": "QmjDbwtB",
+        "f3": "oUDjX",
+        "l3": "idzsncoT",
+        "f4": "tAOp",
+        "l4": "UsexgQm"
+      },
+      "expected": [
+        [
+          "UlHRnnk",
+          "BSIHiI"
+        ],
+        [
+          "MAZIP",
+          "QmjDbwtB"
+        ],
+        [
+          "oUDjX",
+          "idzsncoT"
+        ]
+      ]
+    },
+    {
+      "case_id": "004_8",
+      "params": {
+        "f1": "QHktox",
+        "l1": "PrqukhG",
+        "f2": "sTbhfja",
+        "l2": "khSiyOVx",
+        "f3": "wPqXJY",
+        "l3": "spnC",
+        "f4": "AbEmql",
+        "l4": "CuZijCH"
+      },
+      "expected": [
+        [
+          "QHktox",
+          "PrqukhG"
+        ],
+        [
+          "sTbhfja",
+          "khSiyOVx"
+        ],
+        [
+          "wPqXJY",
+          "spnC"
+        ]
+      ]
+    },
+    {
+      "case_id": "004_9",
+      "params": {
+        "f1": "RcSRd",
+        "l1": "ynrtkaE",
+        "f2": "mBeYVD",
+        "l2": "WCUWHAIq",
+        "f3": "qBVNcoM",
+        "l3": "mfpyy",
+        "f4": "QCygJ",
+        "l4": "CFyiHzYH"
+      },
+      "expected": [
+        [
+          "RcSRd",
+          "ynrtkaE"
+        ],
+        [
+          "mBeYVD",
+          "WCUWHAIq"
+        ],
+        [
+          "qBVNcoM",
+          "mfpyy"
+        ]
+      ]
+    },
+    {
+      "case_id": "004_10",
+      "params": {
+        "f1": "xvMDyo",
+        "l1": "SadtVcw",
+        "f2": "RrlULZT",
+        "l2": "LXKlZF",
+        "f3": "GFMrN",
+        "l3": "rYBs",
+        "f4": "PDFqzvQ",
+        "l4": "IZPl"
+      },
+      "expected": [
+        [
+          "xvMDyo",
+          "SadtVcw"
+        ],
+        [
+          "RrlULZT",
+          "LXKlZF"
+        ],
+        [
+          "GFMrN",
+          "rYBs"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+DELETE FROM deliveries; DELETE FROM clients; DELETE FROM couriers;
